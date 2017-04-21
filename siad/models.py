@@ -6,18 +6,18 @@ class Plantel(models.Model):
 	rfc = models.CharField(max_length = 20)
 	calle = models.CharField(max_length=100)
 	colonia = models.CharField(max_length=100)
-	ciudadEstado = models.CharField(max_length = 100)
+	ciudadEstado = models.CharField(max_length = 50)
 	cp = models.CharField(max_length=5)
 	email = models.CharField(max_length=50)
 	telefono = models.CharField(max_length = 10)
 	def __str__(self):
 		return self.nombre
 class Empleado(models.Model):
-	nombre = models.CharField
+	nombre = models.CharField(max_length=30)
 	plantel = models.ForeignKey(Plantel)
-	nombre = models.TextField(max_length=30)
-	apellidoPaterno = models.TextField(max_length=20)
-	apellidoMaterno = models.TextField(max_length=20)
+	nombre = models.CharField(max_length=30)
+	apellidoPaterno = models.CharField(max_length=20)
+	apellidoMaterno = models.CharField(max_length=20)
 	telefono = models.CharField(max_length = 10)
 	puesto = models.CharField(max_length = 50)
 	sueldo = models.DecimalField(max_digits = 7, decimal_places = 2)
@@ -58,9 +58,9 @@ class Curso(models.Model):
 		return self.servicio	
 class Aspirante(models.Model):
 	plantel = models.ForeignKey(Plantel)
-	nombre = models.TextField(max_length=30)
-	apellidoPaterno = models.TextField(max_length=20)
-	apellidoMaterno = models.TextField(max_length=20)
+	nombre = models.CharField(max_length=30)
+	apellidoPaterno = models.CharField(max_length=20)
+	apellidoMaterno = models.CharField(max_length=20)
 	fechaCreacionRegistro = models.DateField(default=timezone.now)
 	promotor = models.ForeignKey(Empleado)
 	opcionesContacto = (
@@ -107,7 +107,7 @@ class Empresa(models.Model):
 class Alumno(models.Model):
 	fechaCreacionRegistro = models.DateField(default=timezone.now)
 	plantelRegistro = models.ForeignKey(Plantel, null = True)
-	idAspirante = models.ForeignKey(Aspirante, null = True)
+	Aspirante = models.ForeignKey(Aspirante,null = True)
 	numeroControl = models.IntegerField(null = True)
 	curp = models.CharField(max_length=20, null = True)
 	calle = models.CharField(max_length=100, null = True)
@@ -122,7 +122,7 @@ class Alumno(models.Model):
 	empresa = models.ForeignKey(Empresa, null = True)
 	documentacionCompleta = models.BooleanField(default=False)
 	def __str__(self):
-		return self.idAspirante
+		return self.curp ######################################################3
 
 class Pago(models.Model):
 	alumno = models.ForeignKey(Alumno)
