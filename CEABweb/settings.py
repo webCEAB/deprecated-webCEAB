@@ -52,7 +52,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'CEABweb.urls'
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
