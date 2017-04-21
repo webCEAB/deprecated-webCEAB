@@ -122,7 +122,7 @@ class Alumno(models.Model):
 	empresa = models.ForeignKey(Empresa, null = True)
 	documentacionCompleta = models.BooleanField(default=False)
 	def __str__(self):
-		return self.nombre
+		return self.idAspirante
 
 class Pago(models.Model):
 	alumno = models.ForeignKey(Alumno)
