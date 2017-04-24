@@ -12,6 +12,9 @@ class Plantel(models.Model):
 	telefono = models.CharField(max_length = 10)
 	def __str__(self):
 		return self.nombre
+	class Meta: 
+		#ordering = ["nombre"] 
+		verbose_name_plural = "Planteles" 
 class Empleado(models.Model):
 	nombre = models.CharField(max_length=30)
 	plantel = models.ForeignKey(Plantel)
@@ -23,37 +26,43 @@ class Empleado(models.Model):
 	sueldo = models.DecimalField(max_digits = 7, decimal_places = 2)
 	def __str__(self):
 		return "%s: %s %s "%(self.puesto,self.nombre,self.apellidoPaterno)
+	class Meta: 
+		#ordering = ["nombre"] 
+		verbose_name_plural = "Empleados" 
 class Servicio(models.Model):
 	nombre = models.CharField(max_length = 50)
 	costo = models.DecimalField(max_digits= 7,decimal_places=2)
 	def __str__(self):
 		return self.nombre
+	class Meta: 
+		#ordering = ["nombre"] 
+		verbose_name_plural = "Servicios" 
 class Curso(models.Model):
 	opcionesServicio = (
-			('col','Colbach'),
-			('sec','Secundaria'),
-			('cen','Ceneval'),
-			('pre','Prepa abierta'),
-			('prp','Propedeutico prepa'),
-			('pru','Propedeutico Uni'),
-			('otr','Otro'),
+			('Colbach','Colbach'),
+			('Secundaria','Secundaria'),
+			('Ceneval','Ceneval'),
+			('Prepa abierta','Prepa abierta'),
+			('Propedeutico prepa','Propedeutico prepa'),
+			('Propedeutico Uni','Propedeutico Uni'),
+			('Otro','Otro'),
 	)
-	servicio = models.CharField(max_length = 3,choices = opcionesServicio,default = 'col')
+	servicio = models.CharField(max_length = 25,choices = opcionesServicio,default = 'Colbach')
 	opcionesDuracion = (
-			('dos','Dos meses'),
-			('cua','Cuatro meses'),
-			('och','Ocho meses'),
-			('otr','Otro'),
+			('Dos meses','Dos meses'),
+			('Cuatro meses','Cuatro meses'),
+			('Ocho meses','Ocho meses'),
+			('Otro','Otro'),
 	)
-	duracion = models.CharField(max_length = 3,choices = opcionesDuracion,default = 'col')
+	duracion = models.CharField(max_length = 15,choices = opcionesDuracion,default = 'Dos meses')
 	fechaInicio = models.DateField()
 	fechaFin = models.DateField()
 	opcionesClasificacion = (
-			('glo','Global'),
-			('are','Area'),
-			('otr','Otro'),
+			('Global','Global'),
+			('Area','Area'),
+			('Otro','Otro'),
 	)
-	clasificacion =  models.CharField(max_length = 3,choices = opcionesClasificacion,default = 'glo')
+	clasificacion =  models.CharField(max_length = 10,choices = opcionesClasificacion,default = 'Global')
 	def __str__(self):
 		return self.servicio	
 class Aspirante(models.Model):
@@ -64,27 +73,27 @@ class Aspirante(models.Model):
 	fechaCreacionRegistro = models.DateField(default=timezone.now)
 	promotor = models.ForeignKey(Empleado)
 	opcionesContacto = (
-			('per','Personal'),
-			('tel','Telefono'),
-			('ema','Correo electronico'),
-			('otr','Otro'),
+			('Personal','Personal'),
+			('Telefono','Telefono'),
+			('Correo elctronico','Correo electronico'),
+			('Otro','Otro'),
 	)
-	formaContacto = models.CharField(max_length = 3, choices = opcionesContacto,default = 'rec')
+	formaContacto = models.CharField(max_length = 20, choices = opcionesContacto,default = 'Personal')
 	telefono = models.CharField(max_length = 10)
 	celular = models.CharField(max_length = 13)
 	opcionesMedio = (
-			('rec','Recomendacion'),
-			('ins','Instalaciones'),
-			('int','Internet'),
-			('lon','Lona publiciataria'),
-			('vol','volante'),
-			('rad','Radio'),
-			('otr','Otro'),
+			('Recomendacion','Recomendacion'),
+			('Instalaciones','Instalaciones'),
+			('Internet','Internet'),
+			('Lona publicitaria','Lona publiciataria'),
+			('Volante','volante'),
+			('Radio','Radio'),
+			('Otro','Otro'),
 	)
-	medioContacto = models.CharField(max_length = 3,choices = opcionesMedio,default = 'rec')
+	medioContacto = models.CharField(max_length = 20,choices = opcionesMedio,default = 'Recomendacion')
 	servicioInteres = models.ForeignKey(Curso)
 	def __str__(self):
-		return self.nombre
+		return "%s %s %s" % (self.nombre,self.apellidoPaterno,self.apellidoMaterno)
 class ContactoEmpresarial(models.Model):
 	nombre = models.CharField(max_length=100)
 	puesto = models.CharField(max_length=50)
@@ -92,6 +101,9 @@ class ContactoEmpresarial(models.Model):
 	email = models.CharField(max_length=50)
 	def __str__(self):
 		return self.nombre
+	class Meta: 
+		#ordering = ["nombre"] 
+		verbose_name_plural = "Contactos empresariales" 
 class Empresa(models.Model):
 	nombre = models.CharField(max_length=100)
 	rfc = models.CharField(max_length = 20)
@@ -104,6 +116,7 @@ class Empresa(models.Model):
 	contactoEmpresarial = models.ForeignKey(ContactoEmpresarial)
 	def __str__(self):
 		return self.nombre
+	
 class Alumno(models.Model):
 	fechaCreacionRegistro = models.DateField(default=timezone.now)
 	plantelRegistro = models.ForeignKey(Plantel, null = True)
@@ -127,14 +140,14 @@ class Alumno(models.Model):
 class Pago(models.Model):
 	alumno = models.ForeignKey(Alumno)
 	opcionesEsquema = (
-			('col','Semanal'),
-			('sec','Quincenal'),
-			('cen','Mensual'),
-			('pre','Un solo pago'),
-			('otr', 'otro'),
+			('Semanal','Semanal'),
+			('Quincenal','Quincenal'),
+			('Mensual','Mensual'),
+			('Un solo pago','Un solo pago'),
+			('Otro', 'otro'),
 	)
-	esquema = models.CharField(max_length = 3,choices = opcionesEsquema,default = 'sem')
-	fechaInicio = models.DateField()
+	esquema = models.CharField(max_length = 10,choices = opcionesEsquema,default = 'Semanal')
+	fechaInicio = models.DateTimeField()
 	monto = models.DecimalField(max_digits = 7,decimal_places=2)
 	descripcion = models.CharField(max_length=100)
 	def __str__(self):
@@ -149,22 +162,22 @@ class Materia(models.Model):
 	rolHorarioInicio = models.TimeField()
 	rolHorarioFin = models.TimeField()
 	opcionesDias = (
-			('lav','Lunes a viernes'),
-			('lmv','Lunes, miercoles y viernes'),
-			('syd','Sabado y domingo'),
-			('sab','Sabado'),
-			('dom','Domingo'),
-			('otr','Otro'),
+			('Lunes a viernes','Lunes a viernes'),
+			('Lunes miercoles y viernes','Lunes, miercoles y viernes'),
+			('Sabado y domingo','Sabado y domingo'),
+			('sabado','Sabado'),
+			('Domingo','Domingo'),
+			('Otro','Otro'),
 	)
-	diasClase = models.CharField(max_length = 3,choices = opcionesDias,default = 'lav')
+	diasClase = models.CharField(max_length = 30,choices = opcionesDias,default = 'Lunes a viernes')
 	opcionesClasificacion = (
-			('reg','Regular'),
-			('rec','Recursamiento'),
-			('otr','Otro'),
+			('Regular','Regular'),
+			('Recursamiento','Recursamiento'),
+			('Otro','Otro'),
 	)
-	clasificacion = models.CharField(max_length = 3,choices = opcionesClasificacion,default = 'glo')
+	clasificacion = models.CharField(max_length = 15,choices = opcionesClasificacion,default = 'Regular')
 	def __str__(self):
-		return self.nombre
+		return "%s %s" % (self.nombre , self.clasificacion)
 class Proovedor(models.Model):
 	nombre = models.CharField(max_length=100)
 	rfc = models.CharField(max_length = 20)
@@ -176,15 +189,18 @@ class Proovedor(models.Model):
 	telefonoExtension = models.CharField(max_length=50)
 	def __str__(self):
 		return self.nombre
+	class Meta: 
+		#ordering = ["nombre"] 
+		verbose_name_plural = "Proveedores" 
 class Egreso(models.Model):
 	opcionesConcepto = (
-			('nom','nomina'),
-			('ser','Servicios generales (cfe,internet,etc)'),
-			('gac','Gastos corrientes (copias, papeleria, ferreteria)'),
-			('otr','Otros')
+			('Nomina','Nomina'),
+			('Servicios generales','Servicios generales (cfe,internet,etc)'),
+			('Gastos corrientes','Gastos corrientes (copias, papeleria, ferreteria)'),
+			('Otros','Otros')
 	)
 	numeroRegistro = models.IntegerField()
-	concepto = models.CharField(max_length = 50)
+	concepto = models.CharField(max_length = 20)
 	descripcion = models.CharField(max_length = 100)
 	monto = models.DecimalField(max_digits = 7, decimal_places = 2)
 	fecha = models.DateField()
