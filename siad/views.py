@@ -5,6 +5,9 @@ from django.template import Context
 import datetime
 from django.shortcuts import render
 # Create your views here.
+def index(request):
+	return render(request, 'siad/index.html', {})
+
 def post_list(request):
 	return render(request, 'siad/post_list.html', {})
 
@@ -20,7 +23,7 @@ def horas_adelante(request, horas):
 	except ValueError:
 		raise Http404()
 	tiempo = datetime.datetime.now()+datetime.timedelta(hours=horas)
-	return render(request,'horas_adelante.html',{'hora_siguiente':tiempo,'horas':horas})
+	return render(request,'siad/horas_adelante.html',{'hora_siguiente':tiempo,'horas':horas})
 def atributos_meta(request): 
 	valor = request.META.items() 
 	valor.sort() 
