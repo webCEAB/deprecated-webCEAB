@@ -8,7 +8,7 @@ urlpatterns = [
     #url(r'', include('main.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('siad.urls')),
-    url(r'^fecha/$',fecha_actual),
-    url(r'^fecha/mas/(\d{1,2})/$', horas_adelante),
-    url(r'^meta/',atributos_meta),
+    url(r'^fecha/$',fecha_actual, name='fecha_actual'),
+    url(r'^fecha/mas/(\d{1,2})/$', horas_adelante, name='horas_adelante'),
+    url(r'^meta/',atributos_meta, name='atributos_meta'),
 ]
