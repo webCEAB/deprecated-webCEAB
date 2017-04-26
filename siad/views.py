@@ -8,22 +8,6 @@ from django.shortcuts import render
 def index(request):
 	return render(request, 'siad/index.html', {})
 
-def post_list(request):
-	return render(request, 'siad/post_list.html', {})
-
-def fecha_actual(request):
-	ahora = datetime.datetime.now()
-	#t = get_template('fechaActual.html')
-	#html = t.render(Context({'fecha_actual':ahora}))
-	#return HttpResponse(html)
-	return render(request,'siad/fechaActual.html',{'fecha_actual':ahora})
-def horas_adelante(request, horas):
-	try:
-		horas = int(horas)
-	except ValueError:
-		raise Http404()
-	tiempo = datetime.datetime.now()+datetime.timedelta(hours=horas)
-	return render(request,'siad/horas_adelante.html',{'hora_siguiente':tiempo,'horas':horas})
 def atributos_meta(request): 
 	valor = request.META.items() 
 	valor.sort() 

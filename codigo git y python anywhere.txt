@@ -12,17 +12,5 @@ $ git status #nos muestra los archivos que están listos (en verde)
 $ git commit -m "Aquí el comentario de los cambios hechos" #Envía los archivos, hace un comentario sobre ellos, genera un punto en nuestra línea de tiempo
 $ git push origin Vistas #prepara los cambios para que sean "jalados" por el código a pythonanywhere
 
-
-Abre una consola en Pythonanywhere
-
-$ cd ~/my-first-blog
-$ source myvenv/bin/activate
-(myvenv)$ git pull
-[...]
-(myvenv)$ python manage.py collectstatic
-[...]
-
-Finalmente, dirígete a la pestaña Web y selecciona Reload en tu aplicación web.
-
-*-*ciertamente esta página no muestra todos los formularios que he creado con el administrador de django D:
+"Eliminé las plantillas y sus referencias en el código: fechaActual.html, horas_adelante.html y post_list-html ya que no forman parte del proyecto"
 
