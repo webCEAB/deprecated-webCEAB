@@ -83,3 +83,9 @@ ul, ol {
 .nav li ul:hover > li {
     display:block;
 }
+
+.menu_izq {
+    float: left;
+    margin: 0 250px;
+    border-color: blue;
+}

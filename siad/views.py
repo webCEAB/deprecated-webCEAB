@@ -47,5 +47,5 @@ def contactos(request):
         form = FormularioContactos() 
     return render(request, 'formmulario_contactos.html', {'form': form})
 
-def prospecto_raiz(request):
-    return render(request,'siad/prospecto_raiz.html')
+def editar_prospecto(request):
+    return render(request,'siad/editar_prospecto.html')
