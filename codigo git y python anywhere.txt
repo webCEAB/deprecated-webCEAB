@@ -12,5 +12,3 @@ $ git status #nos muestra los archivos que están listos (en verde)
 $ git commit -m "Aquí el comentario de los cambios hechos" #Envía los archivos, hace un comentario sobre ellos, genera un punto en nuestra línea de tiempo
 $ git push origin Vistas #prepara los cambios para que sean "jalados" por el código a pythonanywhere
 
-"Eliminé las plantillas y sus referencias en el código: fechaActual.html, horas_adelante.html y post_list-html ya que no forman parte del proyecto"
-
