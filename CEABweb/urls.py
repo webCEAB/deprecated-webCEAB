@@ -1,6 +1,5 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-<<<<<<< HEAD
 from siad.views import atributos_meta
 from siad import views
 urlpatterns = [
