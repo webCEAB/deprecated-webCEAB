@@ -1,6 +1,6 @@
 <!DOCTYPE HTML PUBLIC "­//W3C//DTD HTML 4.01//EN">
 {% load staticfiles %}
-<html lang="en"> 
+<html lang="es"> 
 	<head>
 		<title>Sistema CEAB</title>
 		<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
@@ -12,12 +12,14 @@
 		<header>
 		    <div class="page-header">
 		        <h1><a href="/">CEAB</a></h1>
+		    </div>
+		</header>
 		        <div id="header">
 		        	<nav>
 						<ul class="nav">
 							<li><a href="">Control Escolar</a>
 								<ul>
-									<li><a href="">Prospectos</a></li>
+									<li><a href="{% url 'prospecto_raiz' %}">Prospectos</a></li>
 									<li><a href="">Alumnos</a></li>
 									<li><a href="">Calendario de clases</a></li>
 								</ul>
@@ -37,8 +39,6 @@
 						</ul>
 					</nav>
 				</div>
-		    </div>
-		</header>
 	    <div class="content container">
 	        <div class="row">
 	            <div class="col-md-8">

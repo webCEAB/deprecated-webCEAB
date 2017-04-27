@@ -45,4 +45,7 @@ def contactos(request):
             return HttpResponseRedirect('/contactos/gracias/') 
     else: 
         form = FormularioContactos() 
-    return render(request, 'formmulario_contactos.html', {'form': form}) 	
+    return render(request, 'formmulario_contactos.html', {'form': form})
+
+def prospecto_raiz(request):
+    return render(request,'siad/prospecto_raiz.html')
