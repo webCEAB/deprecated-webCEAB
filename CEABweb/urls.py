@@ -1,6 +1,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from siad.views import fecha_actual, horas_adelante, atributos_meta
+from siad import views
 urlpatterns = [
     # Examples:
     # url(r'^$', 'CEABweb.views.home', name='home'),
@@ -11,4 +12,7 @@ urlpatterns = [
     url(r'^fecha/$',fecha_actual),
     url(r'^fecha/mas/(\d{1,2})/$', horas_adelante),
     url(r'^meta/',atributos_meta),
+	url(r'^formulario_buscar/$', views.formulario_buscar),
+	url(r'^buscar/$', views.buscar),
+	url(r'^contactos/$', views.contactos),
 ]
