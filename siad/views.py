@@ -49,3 +49,7 @@ def contactos(request):
 
 def editar_prospecto(request):
     return render(request,'siad/editar_prospecto.html')
+
+def nvo_prospecto(request):
+	prospectos = Aspirante.objects.all()
+	return render(request,'siad/list_prospectos.html', {'prospectos': prospectos})

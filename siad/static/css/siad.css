@@ -84,8 +84,12 @@ ul, ol {
     display:block;
 }
 
-.menu_izq {
-    float: left;
-    margin: 0 250px;
-    border-color: blue;
-}
+table {
+    border:1px solid black;
+    border-collapse:separate; 
+    width:200px;
+    height:auto;
+} 
+th, td {
+    border:1px solid black;
+} 

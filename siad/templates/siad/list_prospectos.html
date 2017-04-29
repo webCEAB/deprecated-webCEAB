@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+	<h3>Lista de prospectos registrados</h3>
+	<table>
+	    <thead>
+           <tr>
+             <th scope="col">#</th>
+             <th scope="col">Fecha de registro</th>
+             <th scope="col">Nombre</th>
+             <th scope="col">Servicio</th>
+             <th scope="col">Teléfono de contacto</th>
+             <th scope="col">Celular</th>
+           </tr>
+        </thead>
+    </table>
+    {% for prospecto in prospectos %}
+        <table border="1">
+		    <tr>
+		      <td>{{ prospecto.id|linebreaksbr }}</td>
+		      <td>{{ prospecto.fechaCreacionregistro }}</td>
+		      <td>{{ prospecto }}</td>
+		      <td>{{ prospecto.servicioInteres }}</td>
+		      <td>{{ prospecto.telefono }}</td>
+		      <td>{{ prospecto.celular }}</td>
+		    </tr>
+		</table>
+    {% empty %}
+    	<p>No hay Aspirantes en la base de datos.</p>
+    {% endfor %}
+{% endblock content %}
