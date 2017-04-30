@@ -13,6 +13,7 @@ urlpatterns = [
 	url(r'^formulario_buscar/$', views.formulario_buscar),
 	url(r'^buscar/$', views.buscar),
 	url(r'^contactos/$', views.contactos),
-    url(r'^list_prospectos/$', views.nvo_prospecto, name='list_prospectos'),
-    url(r'^editar_prospecto/$', views.editar_prospecto, name='editar_prospecto'),
+    url(r'^control_escolar/$', views.control_escolar, name='control_escolar'),
+    url(r'^contabilidad/$', views.contabilidad, name='contabilidad'),
+    url(r'^promotoria/$', views.promotoria, name='promotoria'),
 ]

@@ -47,9 +47,11 @@ def contactos(request):
         form = FormularioContactos() 
     return render(request, 'formmulario_contactos.html', {'form': form})
 
-def editar_prospecto(request):
-    return render(request,'siad/editar_prospecto.html')
+def control_escolar(request):
+    return render(request,'siad/control_escolar.html')
 
-def nvo_prospecto(request):
-	prospectos = Aspirante.objects.all()
-	return render(request,'siad/list_prospectos.html', {'prospectos': prospectos})
+def contabilidad(request):
+    return render(request,'siad/contabilidad.html')
+
+def promotoria(request):
+    return render(request,'siad/promotoria.html')

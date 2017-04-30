@@ -12,44 +12,27 @@
 		<header>
 		    <div class="page-header">
 		        <h1><a href="/">CEAB</a></h1>
-		    </div>
+	        	<nav>
+					<ul class="nav">
+						<li><a href="control_escolar/">Control Escolar</a></li>
+						<li><a href="contabilidad/">Contabilidad</a></li>
+						<li><a href="promotoria/">Promotoría</a></li>
+					</ul>
+				</nav>
+			</div>
 		</header>
-		        <div id="header">
-		        	<nav>
-						<ul class="nav">
-							<li><a href="/">Control Escolar</a>
-								<ul>
-									<li><a href="">Prospectos</a>
-										<ul>
-											<li><a href="">Dar de alta nuevo prospecto</a></li>
-											<li><a href="editar_prospecto">Editar un prospecto</a></li>
-											<li><a href="list_prospectos">Consultar un prospecto</a></li>
-										</ul>
-									</li>
-									<li><a href="">Alumnos</a></li>
-									<li><a href="">Calendario de clases</a></li>
-								</ul>
-							</li>
-							<li><a href="/">Cobranza</a>
-								<ul>
-									<li><a href="">Alumno</a></li>
-									<li><a href="">Empresa</a></li>
-								</ul>
-							</li>
-							<li><a href="/">Contabilidad</a>
-								<ul>
-									<li><a href="">Ingresos</a></li>
-									<li><a href="">Gastos</a></li>
-								</ul>
-							</li>
-						</ul>
-					</nav>
-				</div>
 	    <div class="content container">
 	        <div class="row">
 	            <div class="col-md-8">
-	            {% block content %}
-	            {% endblock %}
+	            	<p>Aquí vamos a póner lo que se acordó con la maestra en la propuesta final, ojo se resalta de esta foma:<br></p>
+            		<ul>
+	            		<li> Página por cada área que integra al CEAB (uso de formularios para captura de la información):<br><br></li>
+	            		<li>Control Escolar (4 secciones)<br>Consulta de alumnos por diferentes características (acceso a galería de imágenes o archivos)<br>Calificaciones (acceso a galería de imágenes o archivos)<br>Adeudos<br>Bajas<br><br></li>
+	            		<li>Contabilidad (3 secciones)<br>Ingresos<br>Egresos<br>Corte de caja<br><br></li>
+	            		<li>Promotoría, única sección para consulta por diferentes características</li>
+					</ul>
+		            {% block content %}
+		            {% endblock %}
 	            </div>
 				<div class="col-md-8">
 	            {% block footer %}
