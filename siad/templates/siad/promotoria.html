@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
+{% block aside %}
+	<aside>
+		<ul>
+	        <li><a href="#">Consulta de prospectos</a></li>
+	        <li>Alta de prospectos</li>
+	        <li>Estadística por medio de información</li>
+	    </ul>
+	</aside>
+{% endblock %}
 
 {% block content %}
 	<h2>¡Bienvenido a la sección de Promotoría!</h2>
-	<h3>Selecciona una de las siguientes opciones</h3>
-	<ul>
-        <li>Consulta de prospectos</li>
-        <li>Alta de prospectos</li>
-        <li>Estadística por medio de información</li>
-    </ul>
+
 {% endblock content %}
