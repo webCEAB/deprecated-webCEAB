@@ -20,7 +20,7 @@ def atributos_meta(request):
 	return HttpResponse('<table>%s</table>' % '\n'.join(html)) 
 
 def formulario_buscar(request):
-	return render(request, 'formulario_buscar.html')
+	return render(request, 'siad/formulario_buscar.html')
 
 def buscar(request): 
 	error = False 
@@ -30,9 +30,11 @@ def buscar(request):
 			error = True 
 		else: 
 			libros = Aspirante.objects.filter(nombre__icontains=q) 
-			return render(request, 'resultados.html', {'aspirantes': libros, 'query': q}) 
+			return render(request, 'siad/resultados.html', {'aspirantes': libros, 'query': q}) 
  
-	return render(request, 'formulario_buscar.html', {'error': error}) 
+	return render(request, 'siad/formulario_buscar.html', {'error': error}) 
+
+	
 def contactos(request): 
     if request.method == 'POST': 
         form = FormularioContactos(request.POST) 
@@ -57,4 +59,4 @@ def contabilidad(request):
 
 def promotoria(request):
 	lista_prospectos = Aspirante.objects.all()
-	return render_to_response('siad/promotoria.html', {'lista_prospectos':lista_prospectos})
+	return render_to_response('siad/formulario_buscar.html', {'lista_prospectos':lista_prospectos})

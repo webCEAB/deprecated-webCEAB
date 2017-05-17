@@ -1,0 +1,24 @@
+{% extends 'siad/promotoria.html' %}
+
+{% block buscar %}
+
+	<p><a href="/promotoria"> Click aquí para realizar otra búsqueda</a></p>
+	<p>Estas buscado: <strong>{{ query }}</strong></p> 
+
+	{% if aspirantes %} 
+	    <p>Aspirantes encontrados: {{ aspirantes|length }} aspirante{{ aspirantes|pluralize }}.</p> 
+	    <ul> 
+	        {% for aspirante in aspirantes %} 
+	            <li>{{ aspirante.nombre }}</li> 
+	        {% endfor %} 
+	    </ul> 
+	{% else %} 
+	    <p>Ningún aspirante coincide con el criterio de búsqueda.</p> 
+	{% endif %} 
+
+{% endblock %}
+
+
+
+
+

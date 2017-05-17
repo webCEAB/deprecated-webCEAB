@@ -1,0 +1,17 @@
+{% extends 'siad/promotoria.html' %}
+
+{% block buscar %}
+
+	
+
+	<p style="color: red;">Por favor introduce un término de búsqueda.</p> 
+
+    <form action="/buscar/" method="get"> 
+        <input type="text" name="q"> 
+        <input type="submit" value="Buscar"> 
+    </form> 
+
+    <p>Actualmente tienes: {{ lista_prospectos|length }} aspirantes</p>
+	{{ lista_prospectos }}
+
+{% endblock %}

@@ -2,7 +2,7 @@
 {% block aside %}
 	<aside>
 		<ul>
-	        <li><a href="#">Consulta de prospectos</a></li>
+	        <li><a href="/promotoria">Consulta de prospectos</a></li>
 	        <li>Alta de prospectos</li>
 	        <li>Estadística por medio de información</li>
 	    </ul>
@@ -10,9 +10,10 @@
 {% endblock %}
 
 {% block content %}
-	<h2>¡Bienvenido a la sección de Promotoría!</h2>
+		<h2>¡Bienvenido a la sección de Promotoría!</h2>
 
-	<p>Actualmete tienes: {{ lista_prospectos|length }} aspirantes en la base de datos</p>
-	{{ lista_prospectos }}
+		{% block buscar %}
+		{% endblock %}
+
 
 {% endblock %}

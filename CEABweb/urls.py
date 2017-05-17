@@ -10,7 +10,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('siad.urls')),
     url(r'^meta/',atributos_meta),
-	url(r'^formulario_buscar/$', views.formulario_buscar),
+	url(r'^formulario_buscar/$', views.formulario_buscar, name='formulario_buscar'),
 	url(r'^buscar/$', views.buscar),
 	url(r'^contactos/$', views.contactos),
     url(r'^control_escolar/$', views.control_escolar, name='control_escolar'),
