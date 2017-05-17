@@ -12,4 +12,7 @@
 {% block content %}
 	<h2>¡Bienvenido a la sección de Promotoría!</h2>
 
-{% endblock content %}
+	<p>Actualmete tienes: {{ lista_prospectos|length }} aspirantes en la base de datos</p>
+	{{ lista_prospectos }}
+
+{% endblock %}

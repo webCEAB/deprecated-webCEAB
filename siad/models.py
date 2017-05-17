@@ -92,8 +92,13 @@ class Aspirante(models.Model):
 	)
 	medioContacto = models.CharField(max_length = 20,choices = opcionesMedio,default = 'Recomendacion')
 	servicioInteres = models.ForeignKey(Curso)
+
+	class Meta:
+		ordering=["apellidoPaterno"]
+
 	def __str__(self):
 		return "%s %s %s" % (self.nombre,self.apellidoPaterno,self.apellidoMaterno)
+
 class ContactoEmpresarial(models.Model):
 	nombre = models.CharField(max_length=100)
 	puesto = models.CharField(max_length=50)
@@ -104,6 +109,7 @@ class ContactoEmpresarial(models.Model):
 	class Meta: 
 		#ordering = ["nombre"] 
 		verbose_name_plural = "Contactos empresariales" 
+		
 class Empresa(models.Model):
 	nombre = models.CharField(max_length=100)
 	rfc = models.CharField(max_length = 20)

@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 import datetime
 from django.shortcuts import render
 from django.core.mail import send_mail
-
 from siad.models import Aspirante
+
 # Create your views here.
 def index(request):
 	return render(request, 'siad/index.html', {})
@@ -18,8 +18,10 @@ def atributos_meta(request):
 	for k, v in valor: 
 		html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v)) 
 	return HttpResponse('<table>%s</table>' % '\n'.join(html)) 
+
 def formulario_buscar(request):
 	return render(request, 'formulario_buscar.html')
+
 def buscar(request): 
 	error = False 
 	if 'q' in request.GET: 
@@ -54,4 +56,5 @@ def contabilidad(request):
     return render(request,'siad/contabilidad.html')
 
 def promotoria(request):
-    return render(request,'siad/promotoria.html')
+	lista_prospectos = Aspirante.objects.all()
+	return render_to_response('siad/promotoria.html', {'lista_prospectos':lista_prospectos})
