@@ -34,7 +34,7 @@ def buscar(request):
  
 	return render(request, 'siad/formulario_buscar.html', {'error': error}) 
 
-	
+
 def contactos(request): 
     if request.method == 'POST': 
         form = FormularioContactos(request.POST) 
@@ -58,5 +58,5 @@ def contabilidad(request):
     return render(request,'siad/contabilidad.html')
 
 def promotoria(request):
-	lista_prospectos = Aspirante.objects.all()
+	lista_prospectos = Aspirante.objects.order_by("id")
 	return render_to_response('siad/formulario_buscar.html', {'lista_prospectos':lista_prospectos})

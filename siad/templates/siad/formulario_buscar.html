@@ -11,7 +11,33 @@
         <input type="submit" value="Buscar"> 
     </form> 
 
-    <p>Actualmente tienes: {{ lista_prospectos|length }} aspirantes</p>
-	{{ lista_prospectos }}
-
+    <p>Actualmente tienes: {{ lista_prospectos|length }} prospectos</p>
+    <table>
+    	<thead>
+    		<tr>
+    			<th>N°</th>
+    			<th>Nombre</th>
+    			<th>Teléfonos</th>
+    			<th>Medio</th>
+    			<th>Fecha de registro</th>
+    			<th>Promotor</th>
+    			<th>Forma de contacto</th>
+    			<th>Curso que le interesa</th>
+    		</tr>	
+    	</thead>
+    	<tbody>
+		    {% for prospecto in lista_prospectos %}
+		    	<tr>
+		    		<td>{{ prospecto.id }}</td>
+		    		<td>{{ prospecto }}</td>
+		    		<td>{{ prospecto.telefono }} y {{ prospecto.celular }}</td>
+		    		<td>{{ prospecto.medioContacto }}</td>
+		    		<td>{{ prospecto.fechaCreacionRegistro }}</td>
+		    		<td>{{ prospecto.promotor|cut:"Promotor: Promotor " }}</td>
+		    		<td>{{ prospecto.formaContacto }}</td>
+		    		<td>{{ prospecto.servicioInteres }}</td>
+		    	</tr>
+		    {% endfor %}
+		</tbody>
+	</table>
 {% endblock %}
