@@ -8,13 +8,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	 </head>
 	<body>
-		<header class="row" style="padding-top: 10px; padding-bottom: 20px">
+		<header class="row" style="padding-top: 10px">
 				<img class="col-md-1" src="http://www.mibachilleratoabierto.com.mx/images/logo.png" alt="Logo">			
-	        	<h1 class="col-md-1"  id="ceab"><a href="/">CEAB</a></h1>
 	        </div>
 	    
-	        <nav class="col-md-10">
-		        <ul class="nav nav-pills" style="padding-top: 20px" >
+	        <nav class="col-md-11">
+		        <ul class="nav nav-pills" style="padding-top: 20px; padding-left: 20px" >
 					<li class="active"><a href="/">Inicio</a></li>
 					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/control_escolar">Control Escolar <span class="caret"></span></a>
 						<ul class="dropdown-menu">
@@ -41,12 +40,12 @@
 				</ul>
 			</nav>
 		</header>
-    	<div>
+    	<div class="col-md-3">
         	{% block aside %}
         	{% endblock %}
         </div>
 
-        <section>
+        <section class="col-md-9">
         	
             
             {% block content %}
