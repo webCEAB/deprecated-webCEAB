@@ -3,47 +3,50 @@
 <html lang="es"> 
 	<head>
 		<title>Sistema CEAB</title>
-	    <link rel="stylesheet" href="{% static 'css/siad.css' %}">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 	 </head>
 	<body>
-		<header class="page-header">
-			<img src="http://www.mibachilleratoabierto.com.mx/images/logo.png" alt="Logo">
-	        <h1 id="ceab"><a href="/">CEAB</a></h1>
-	    </header>
-	        <nav>
-		        <ul class="nav nav-pills">
+		<header class="row" style="padding-top: 10px; padding-bottom: 20px">
+				<img class="col-md-1" src="http://www.mibachilleratoabierto.com.mx/images/logo.png" alt="Logo">			
+	        	<h1 class="col-md-1"  id="ceab"><a href="/">CEAB</a></h1>
+	        </div>
+	    
+	        <nav class="col-md-10">
+		        <ul class="nav nav-pills" style="padding-top: 20px" >
 					<li class="active"><a href="/">Inicio</a></li>
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="/control_escolar">Control Escolar <span class="caret"></span></a>
-						<ul>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/control_escolar">Control Escolar <span class="caret"></span></a>
+						<ul class="dropdown-menu">
 							<li><a href="#">Consulta de alumnos</a></li>
 					        <li><a href="#">Consulta de calificaciones</a></li>
 					        <li><a href="#">Consulta de adeudos</a></li>
 					        <li><a href="#">Baja de alumnos</a></li>
-						</ul></li>
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="/contabilidad">Contabilidad <span class="caret"></span></a>
-						<ul>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/contabilidad">Contabilidad <span class="caret"></span></a>
+						<ul class="dropdown-menu">
 					        <li><a href="#">Ingresos</a></li>
 					        <li><a href="#">Egresos</a></li>
 					        <li><a href="#">Corte de caja</a></li>
-						</ul></li>
-					<li class="dropdown">
-						<a class="dropdown-toggle" data-toggle="dropdown" href="/promotoria">Promotoría <span class="caret"></span></a>
-						<ul>
+						</ul>
+					</li>
+					<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="/promotoria">Promotoría <span class="caret"></span></a>
+						<ul class="dropdown-menu">
 					        <li><a href="/promotoria">Consulta de prospectos</a></li>
 	        				<li><a href="#">Alta de prospectos</a></li>
 	        				<li><a href="#">Estadística por medio de información</a></li>
-						</ul></li><br><br><br><br><br><br><br><br><br><br>
+						</ul>
+					</li>
 				</ul>
 			</nav>
-		
+		</header>
     	<div>
         	{% block aside %}
         	{% endblock %}
         </div>
 
-        <section class="content">
+        <section>
         	
             
             {% block content %}
@@ -57,6 +60,9 @@
         	<p style="margin-left: 40px" >Este es el footer. Aquí arriba vamos a poner lo que se acordó con la maestra en la propuesta final, ojo se resalta de esta foma:<br>** Página por cada área que integra al CEAB (uso de formularios para captura de la información):<br></p>
         {% endblock %}
         </footer>
-	    
+	    <!-- Latest compiled and minified JavaScript -->
+		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 	</body> 
 </html>
