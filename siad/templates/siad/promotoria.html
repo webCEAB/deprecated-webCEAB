@@ -1,10 +1,12 @@
 {% extends 'base.html' %}
 {% block aside %}
 	<aside style="padding-top: 20px">
-		<ul>
-	        <li><a href="/promotoria">Consulta de prospectos</a></li>
-	        <li>Alta de prospectos</li>
-	        <li>Estadística por medio de información</li>
+		<ul class="list-group">
+	        <li class="list-group-item"><a href="/promotoria">Consulta de prospectos</a>
+	        	<span class="badge">{{ lista_prospectos_total|length }}</span>
+	        </li>
+	        <li class="list-group-item">Alta de prospectos</li>
+	        <li class="list-group-item">Estadística por medio de información</li>
 	    </ul>
 	</aside>
 {% endblock %}
@@ -14,6 +16,9 @@
 
 		{% block buscar %}
 		{% endblock %}
+
+		{% block resultado %}
+    	{% endblock %}
 
 
 {% endblock %}

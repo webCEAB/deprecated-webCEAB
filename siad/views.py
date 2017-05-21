@@ -6,6 +6,7 @@ import datetime
 from django.shortcuts import render
 from django.core.mail import send_mail
 from siad.models import Aspirante
+import csv
 
 # Create your views here.
 def index(request):
@@ -58,5 +59,24 @@ def contabilidad(request):
     return render(request,'siad/contabilidad.html')
 
 def promotoria(request):
-	lista_prospectos = Aspirante.objects.order_by("id")
-	return render_to_response('siad/formulario_buscar.html', {'lista_prospectos':lista_prospectos})
+	lista_prospectos_total = Aspirante.objects.order_by("id")
+	lista_prospectos = Aspirante.objects.order_by("id")[0:10]
+	i=10
+	grupo = round(len(lista_prospectos_total) // i)
+	resto= round(len(lista_prospectos_total) % i)
+	paginas = grupo+resto
+	j=1
+	inicio=0
+	fin=1
+	if j < paginas:
+		j=j+1
+		inicio=fin-1
+		fin=inicio+i
+		lista_prospect_p1 = Aspirante.objects.order_by("id").filter(id__range=(inicio, fin))
+		pass
+	elif resto < i:
+		inicio=fin-1
+		fin=inicio+i
+		lista_prospect_p1 = Aspirante.objects.order_by("id").filter(id__range=(inicio, resto))
+		pass
+	return render_to_response('siad/formulario_buscar.html', {'lista_prospect_p1':lista_prospect_p1,'lista_prospectos_total':lista_prospectos_total,'lista_prospectos':lista_prospectos, 'paginas':paginas, 'i':i})

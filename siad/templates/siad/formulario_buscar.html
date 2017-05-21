@@ -1,43 +1,45 @@
 {% extends 'siad/promotoria.html' %}
 
 {% block buscar %}
-
-	
-
-	<p style="color: red;">Por favor introduce un término de búsqueda.</p> 
-
+    <p>Actualmente tienes: {{ lista_prospectos_total|length }} prospecto{{ lista_prospectos_total|pluralize }}</p>
+    <p>páginas resultanes: {{ paginas }}, al dividir el total de registros en {{ i }}</p>
+    {{ lista_prospect_p1 }}
+	<p style="color: red;">Para consultar un prospecto, por favor introduce un término de búsqueda.</p> 
     <form action="/buscar/" method="get"> 
         <input type="text" name="q"> 
         <input type="submit" value="Buscar"> 
-    </form> 
+    </form> <br>
+    <div class="table-responsive">
+        <table class="table table-striped">
+        	<thead>
+        		<tr>
+                    <th>N°</th>
+        			<th>Nombre</th>
+        			<th>Teléfonos</th>
+        			<th>Medio</th>
+                    <th>Plantel</th>
+        			<th>Fecha de registro</th>
+        			<th>Promotor</th>
+        			<th>Forma de contacto</th>
+        			<th>Curso que le interesa</th>
+        		</tr>	
+        	</thead>
+        	<tbody>
+    		    {% for prospecto in lista_prospectos %}
+    		    	<tr>
+    		    		<td>{{ prospecto.id }}</td>
+    		    		<td>{{ prospecto }}</td>
+    		    		<td>{{ prospecto.telefono }} y {{ prospecto.celular }}</td>
+                        <td>{{ prospecto.plantel }}</td>
+    		    		<td>{{ prospecto.medioContacto }}</td>
+    		    		<td>{{ prospecto.fechaCreacionRegistro }}</td>
+    		    		<td>{{ prospecto.promotor|cut:"Promotor: Promotor " }}</td>
+    		    		<td>{{ prospecto.formaContacto }}</td>
+    		    		<td>{{ prospecto.servicioInteres }}</td>
+    		    	</tr>
 
-    <p>Actualmente tienes: {{ lista_prospectos|length }} prospectos</p>
-    <table>
-    	<thead>
-    		<tr>
-    			<th>N°</th>
-    			<th>Nombre</th>
-    			<th>Teléfonos</th>
-    			<th>Medio</th>
-    			<th>Fecha de registro</th>
-    			<th>Promotor</th>
-    			<th>Forma de contacto</th>
-    			<th>Curso que le interesa</th>
-    		</tr>	
-    	</thead>
-    	<tbody>
-		    {% for prospecto in lista_prospectos %}
-		    	<tr>
-		    		<td>{{ prospecto.id }}</td>
-		    		<td>{{ prospecto }}</td>
-		    		<td>{{ prospecto.telefono }} y {{ prospecto.celular }}</td>
-		    		<td>{{ prospecto.medioContacto }}</td>
-		    		<td>{{ prospecto.fechaCreacionRegistro }}</td>
-		    		<td>{{ prospecto.promotor|cut:"Promotor: Promotor " }}</td>
-		    		<td>{{ prospecto.formaContacto }}</td>
-		    		<td>{{ prospecto.servicioInteres }}</td>
-		    	</tr>
-		    {% endfor %}
-		</tbody>
-	</table>
+    		    {% endfor %}
+    		</tbody>
+    	</table>
+    </div>
 {% endblock %}
