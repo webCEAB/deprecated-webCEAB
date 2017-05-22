@@ -3,10 +3,29 @@
 <html>
 <head>
 	<title>{{title}}</title>
+	<style>
+	table, th, td {
+		border: 1px solid black;
+	}
+	</style>
 </head>
 <body>
+	<table style="width:100%">
+	<th> Celdas </th>
+	<th> Pago CFE </th>
+	<th> Inversion </th>
+	<th> Ahorro </th>
+	<th> ROI (años) </th>
+	<th> diferencia </th>
 	<h1> {{title}} </h1>
-	<p>{{datos}}</p>
-	
+	{% for item in datos %}
+		<tr>
+			{% for subitem in item %}
+			<th>{{subitem}}</th>
+			{% endfor %}
+    	
+    	</tr>
+	{% endfor %}
+	</table>
 </body>
 </html>

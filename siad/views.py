@@ -89,7 +89,24 @@ def atributos_meta(request):
 def residencial(request,consumo):
 	#instance = Post.objects.get(id=3) # this is the wrong way, do no do this
 	#instance = get_object_or_404(Post,id=id)
-	datos = rut.pagoCFE
+	consumo = int(consumo)
+	pagoActual = pagoCFE(consumo)
+	pagoAnterior = pagoActual
+	#print "nCell\tpagoCFE \tInvers\tAhorro\tROI"
+	nCells = 0 
+	datos = []
+	while consumo>0:
+		ahorro = round(pagoActual-pagoCFE(consumo),2)
+		inver = round(inversion(nCells)[0],2)
+		pago = round(pagoCFE(consumo),2)
+		if ahorro != 0:
+			datos.append([str(nCells),str(pago),str(inver),str(ahorro),str(round((inver/ahorro)/6.0,2)),str(round(pagoAnterior-pago,2))])
+		else:
+			datos.append([str(nCells),str(pago),str(inver),str(ahorro),"No hay retorno de inversion" ,str(round(pagoAnterior-pago,2))])
+		pagoAnterior = pago
+		nCells += 1
+		consumo -= 75
+	
 	context = {
 				"title":"Cotizacion residencial",
 			    "datos":datos}
