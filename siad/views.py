@@ -60,23 +60,29 @@ def contabilidad(request):
 
 def promotoria(request):
 	lista_prospectos_total = Aspirante.objects.order_by("id")
-	lista_prospectos = Aspirante.objects.order_by("id")[0:10]
-	i=10
-	grupo = round(len(lista_prospectos_total) // i)
-	resto= round(len(lista_prospectos_total) % i)
+	lista_prospectos = Aspirante.objects.order_by("id")[0:3]
+	total=len(lista_prospectos_total)
+	i=12
+	grupo=1
+	resto=0
 	paginas = grupo+resto
-	j=1
-	inicio=0
-	fin=1
-	if j < paginas:
-		j=j+1
-		inicio=fin-1
-		fin=inicio+i
-		lista_prospect_p1 = Aspirante.objects.order_by("id").filter(id__range=(inicio, fin))
-		pass
-	elif resto < i:
-		inicio=fin-1
-		fin=inicio+i
-		lista_prospect_p1 = Aspirante.objects.order_by("id").filter(id__range=(inicio, resto))
-		pass
+	if total<=i:
+		lista_prospect_p1=Aspirante.objects.order_by("id").filter(id__range=(0, total))
+		print(lista_prospect_p1)
+	else:
+		grupo = round(len(lista_prospectos_total) // i)
+		resto= round(len(lista_prospectos_total) % i)
+		paginas= grupo
+		j=1
+		inicio=0
+		fin=i
+		while j <= grupo:
+			lista_prospect_p1=Aspirante.objects.order_by("id").filter(id__range=(inicio, fin))
+			print(lista_prospect_p1)
+			inicio=fin
+			fin=inicio+i
+			j=j+1
+		if resto > 0:
+			lista_prospect_p1=Aspirante.objects.order_by("id").filter(id__range=(inicio, total))
+			print(lista_prospect_p1)
 	return render_to_response('siad/formulario_buscar.html', {'lista_prospect_p1':lista_prospect_p1,'lista_prospectos_total':lista_prospectos_total,'lista_prospectos':lista_prospectos, 'paginas':paginas, 'i':i})

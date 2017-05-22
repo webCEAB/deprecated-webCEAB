@@ -4,6 +4,10 @@
     <p>Actualmente tienes: {{ lista_prospectos_total|length }} prospecto{{ lista_prospectos_total|pluralize }}</p>
     <p>páginas resultanes: {{ paginas }}, al dividir el total de registros en {{ i }}</p>
     {{ lista_prospect_p1 }}
+    {% for prospect in lista_prospect_p1 %}
+        {{ prospect.id }}
+    {% endfor %}
+
 	<p style="color: red;">Para consultar un prospecto, por favor introduce un término de búsqueda.</p> 
     <form action="/buscar/" method="get"> 
         <input type="text" name="q"> 
