@@ -120,6 +120,31 @@ def pagoCFE(consumption):
 			#return total
 	return total*(1.0+iva)
 
+def pagoCFEComercial(consumption):
+	""" Computes the charge done to the user according to CFE rates, comercial fees
+	    powerDemand [int]: the power used bimonthly by the user
+	"""
+	basicCost = 2.780
+	middleCost = 3.356
+	excessCost = 3.699
+	iva = 0.16
+	pagoFijo =  	65.93
+	#	print("El consumo recibido es: ",consumption)
+	#print("El consumo recibido es:",consumption)
+	total = pagoFijo + consumption*basicCost # When user is in basic consumption
+ 	if consumption>100: # when user is in in middle consumption
+		total = pagoFijo+100*basicCost # full first step
+		consumption -= 100 # just take into account from  middle to excess step
+		if consumption>100: #if consmumption is on the third step
+			total+= 100*middleCost
+			consumption -= 100
+			if consumption>0:
+				total+= consumption*excessCost
+		else:
+			total += consumption*middleCost
+	#print(consumption,total)
+	return total*(1.0+iva)
+
 ###############
 # Create your views here.
 def index(request):
@@ -142,13 +167,13 @@ def residencial(request,consumo):
 	nCells = 0 
 	datos = []
 	while consumo>0:
-		ahorro = round(pagoActual-pagoCFE(consumo),2)
-		inver = round(inversion(nCells)[0],2)
-		pago = round(pagoCFE(consumo),2)
+		ahorro = pagoActual-pagoCFE(consumo)
+		inver = inversion(nCells)[0]
+		pago = pagoCFE(consumo)
 		if ahorro != 0:
-			datos.append([str(nCells),str(pago),str(inver),str(ahorro),str(round((inver/ahorro)/6.0,2)),str(round(pagoAnterior-pago,2))])
+			datos.append([str(nCells),str(round(pago,2)),str(round(inver,2)),str(round(ahorro,2)),str(round((inver/ahorro)/6.0,2)),str(round(pagoAnterior-pago,2))])
 		else:
-			datos.append([str(nCells),str(pago),str(inver),str(ahorro),"No hay retorno de inversion" ,str(round(pagoAnterior-pago,2))])
+			datos.append([str(nCells),str(round(pago,2)),str(round(inver,2)),str(round(ahorro,2)),"No hay retorno de inversion" ,str(round(pagoAnterior-pago,2))])
 		pagoAnterior = pago
 		nCells += 1
 		consumo -= 75
@@ -157,3 +182,30 @@ def residencial(request,consumo):
 				"title":"Cotizacion residencial",
 			    "datos":datos}
 	return render(request,"residencial.html",context)
+
+def comercial(request,consumo):
+	#instance = Post.objects.get(id=3) # this is the wrong way, do no do this
+	#instance = get_object_or_404(Post,id=id)
+	consumo = int(consumo)
+	pagoActual = pagoCFEComercial(consumo)
+	pagoAnterior = pagoActual
+	#print "nCell\tpagoCFE \tInvers\tAhorro\tROI"
+	nCells = 0 
+	datos = []
+	while consumo>0:
+		ahorro = round(pagoActual-pagoCFEComercial(consumo),2)
+		inver = round(inversion(nCells)[0],2)
+		pago = round(pagoCFEComercial(consumo),2)
+		if ahorro != 0:datos.append([str(nCells),str(round(pago,2)),str(round(inver,2)),str(round(ahorro,2)),str(round((inver/ahorro)/6.0,2)),str(round(pagoAnterior-pago,2))])
+		else:
+			datos.append([str(nCells),str(round(pago,2)),str(round(inver,2)),str(round(ahorro,2)),"No hay retorno de inversion" ,str(round(pagoAnterior-pago,2))])
+		pagoAnterior = pago
+		nCells += 1
+		consumo -= 75
+	
+	context = {
+				"title":"Cotizacion Comercial",
+			    "datos":datos}
+	return render(request,"residencial.html",context)
+def instrucciones(request):
+	return HttpResponse("En la barra de direcciones debes de agregar residencial o comercial seguido de la diagonal / y despues el consumo, por ejemplo /residencial/510 te arroja la cotizacion para residencial con un consumo de 510 kwh")
