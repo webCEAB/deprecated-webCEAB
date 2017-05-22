@@ -1,11 +1,3 @@
-from django.shortcuts import render, get_object_or_404 # is used to looks for the object that is related the call
-from django.http import HttpResponse
-from django.template.loader import get_template
-from django.template import Context
-import datetime
-from django.shortcuts import render
-###############
-
 import numpy as np
 def inversion(nCells):
 	""" Return the instalation cost of nCells
@@ -58,7 +50,7 @@ def pagoCFE(consumption):
  		pagoFijo = 99.84
  		total = pagoFijo + powerDemand*DACcost
  		#return pagoFijo + powerDemand*DACcost
-	else:
+ 	else:
 		if powerDemand>150: # when user is in in middle consumption
 			total = 150*basicCost # full first step
 			consumption -= 150 # just take into account from  middle to excess step
@@ -74,24 +66,19 @@ def pagoCFE(consumption):
 			#return total
 	return total*(1.0+iva)
 
-###############
-# Create your views here.
-def index(request):
-	return render(request, 'siad/index.html', {})
-
-def atributos_meta(request): 
-	valor = request.META.items() 
-	valor.sort() 
-	html = [] 
-	for k, v in valor: 
-		html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v)) 
-	return HttpResponse('<table>%s</table>' % '\n'.join(html)) 
-def residencial(request,consumo):
-	#instance = Post.objects.get(id=3) # this is the wrong way, do no do this
-	#instance = get_object_or_404(Post,id=id)
-	datos = rut.pagoCFE
-	context = {
-				"title":"Cotizacion residencial",
-			    "datos":datos}
-	return render(request,"residencial.html",context)
-
+consumo = 800
+pagoActual = pagoCFE(consumo)
+pagoAnterior = pagoActual
+print "nCell\tpagoCFE \tInvers\tAhorro\tROI"
+nCells = 0 
+while consumo>0:
+	ahorro = pagoActual-pagoCFE(consumo)
+	inver = inversion(nCells)[0]
+	pago = pagoCFE(consumo)
+	if ahorro != 0:
+		print nCells,"\t",pago,"\t",inver,"\t",ahorro,"\t",(inver/ahorro)/6.0,"\t",pagoAnterior-pago
+	else:
+		print nCells,"\t",pago,"\t",inver,"\t",ahorro,"\t","no hay retorno de inversion","\t",pagoAnterior-pago
+	pagoAnterior = pago
+	nCells += 1
+	consumo -= 75
