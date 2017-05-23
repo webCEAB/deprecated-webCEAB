@@ -1,16 +1,25 @@
 {% extends 'base.html' %}
-
-{% block content %}
-	<h2>¡Bienvenido a la sección de Control Escolar!</h2>
-{% endblock content %}
-
 {% block aside %}
-	<aside>
-		<ul>
-	        <li><a href="#">Consulta de alumnos</a></li>
-	        <li><a href="#">Consulta de calificaciones</a></li>
-	        <li><a href="#">Consulta de adeudos</a></li>
-	        <li><a href="#">Baja de alumnos</a></li>
+	<aside style="padding-top: 20px">
+		<ul class="list-group">
+	        <li class="list-group-item"><a href="/control_escolar">Consulta de alumnos</a>
+	        	<span class="badge">{{ lista_alumnos_total|length }}</span>
+	        </li>
+	        <li class="list-group-item">Consulta de calificaciones</li>
+	        <li class="list-group-item">Consulta de adeudos</li>
+	        <li class="list-group-item">Baja de alumnos</li>
 	    </ul>
 	</aside>
+{% endblock %}
+
+{% block content %}
+		<h2>¡Bienvenido a la sección de Control Escolar!</h2>
+
+		{% block buscar %}
+		{% endblock %}
+
+		{% block resultado %}
+    	{% endblock %}
+
+
 {% endblock %}

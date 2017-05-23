@@ -5,7 +5,7 @@ from django.template import Context
 import datetime
 from django.shortcuts import render
 from django.core.mail import send_mail
-from siad.models import Aspirante
+from siad.models import Aspirante, Alumno
 import csv
 
 # Create your views here.
@@ -23,6 +23,9 @@ def atributos_meta(request):
 def formulario_buscar(request):
 	return render(request, 'siad/formulario_buscar.html')
 
+def formulario_buscar_alumno(request):
+	return render(request, 'siad/formulario_buscar_alumno.html')
+
 def buscar(request): 
 	error = False 
 	if 'q' in request.GET: 
@@ -34,6 +37,18 @@ def buscar(request):
 			return render(request, 'siad/resultados.html', {'aspirantes': libros, 'query': q}) 
  
 	return render(request, 'siad/formulario_buscar.html', {'error': error}) 
+
+def buscar_alumno(request): 
+	error = False 
+	if 's' in request.GET: 
+		s = request.GET['s'] 
+		if not s: 
+			error = True 
+		else: 
+			alumnos = Alumno.objects.filter(id__icontains=s) 
+			return render(request, 'siad/resultados_alumno.html', {'alumnos': alumnos, 'query': s}) 
+ 
+	return render(request, 'siad/formulario_buscar_alumno.html', {'error': error}) 
 
 
 def contactos(request): 
@@ -53,36 +68,12 @@ def contactos(request):
     return render(request, 'formmulario_contactos.html', {'form': form})
 
 def control_escolar(request):
-    return render(request,'siad/control_escolar.html')
+	lista_alumnos_total = Alumno.objects.order_by("id")
+	return render_to_response('siad/formulario_buscar_alumno.html', {'lista_alumnos_total':lista_alumnos_total})
 
 def contabilidad(request):
     return render(request,'siad/contabilidad.html')
 
 def promotoria(request):
 	lista_prospectos_total = Aspirante.objects.order_by("id")
-	lista_prospectos = Aspirante.objects.order_by("id")[0:3]
-	total=len(lista_prospectos_total)
-	i=12
-	grupo=1
-	resto=0
-	paginas = grupo+resto
-	if total<=i:
-		lista_prospect_p1=Aspirante.objects.order_by("id").filter(id__range=(0, total))
-		print(lista_prospect_p1)
-	else:
-		grupo = round(len(lista_prospectos_total) // i)
-		resto= round(len(lista_prospectos_total) % i)
-		paginas= grupo
-		j=1
-		inicio=0
-		fin=i
-		while j <= grupo:
-			lista_prospect_p1=Aspirante.objects.order_by("id").filter(id__range=(inicio, fin))
-			print(lista_prospect_p1)
-			inicio=fin
-			fin=inicio+i
-			j=j+1
-		if resto > 0:
-			lista_prospect_p1=Aspirante.objects.order_by("id").filter(id__range=(inicio, total))
-			print(lista_prospect_p1)
-	return render_to_response('siad/formulario_buscar.html', {'lista_prospect_p1':lista_prospect_p1,'lista_prospectos_total':lista_prospectos_total,'lista_prospectos':lista_prospectos, 'paginas':paginas, 'i':i})
+	return render_to_response('siad/formulario_buscar.html', {'lista_prospectos_total':lista_prospectos_total})

@@ -1,17 +1,11 @@
 {% extends 'siad/promotoria.html' %}
 
 {% block buscar %}
-    <p>Actualmente tienes: {{ lista_prospectos_total|length }} prospecto{{ lista_prospectos_total|pluralize }}</p>
-    <p>páginas resultanes: {{ paginas }}, al dividir el total de registros en {{ i }}</p>
-    {{ lista_prospect_p1 }}
-    {% for prospect in lista_prospect_p1 %}
-        {{ prospect.id }}
-    {% endfor %}
-
+    <h3>Actualmente tienes: {{ lista_prospectos_total|length }} prospecto{{ lista_prospectos_total|pluralize }}</h3>
 	<p style="color: red;">Para consultar un prospecto, por favor introduce un término de búsqueda.</p> 
     <form action="/buscar/" method="get"> 
         <input type="text" name="q"> 
-        <input type="submit" value="Buscar"> 
+        <input type="submit" value="Buscar por nombre"> 
     </form> <br>
     <div class="table-responsive">
         <table class="table table-striped">
@@ -29,7 +23,7 @@
         		</tr>	
         	</thead>
         	<tbody>
-    		    {% for prospecto in lista_prospectos %}
+    		    {% for prospecto in lista_prospectos_total %}
     		    	<tr>
     		    		<td>{{ prospecto.id }}</td>
     		    		<td>{{ prospecto }}</td>
