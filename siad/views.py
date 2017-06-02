@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.core.mail import send_mail
-from siad.models import Aspirante, Alumno
+from .models import Aspirante, Alumno
+from .forms import FormularioContactos, NuevoProspecto
 import csv
 
 # Create your views here.
@@ -59,13 +60,13 @@ def contactos(request):
             send_mail( 
                 cd['asunto'], 
                 cd['mensaje'], 
-                cd.get('email', 'noreply@example.com'), 
-                    ['siteowner@example.com'], 
+                cd.get('email', 'indira.fraga@gmail.com'), 
+                    ['indira.fraga@gmail.com'], 
              ) 
             return HttpResponseRedirect('/contactos/gracias/') 
     else: 
         form = FormularioContactos() 
-    return render(request, 'formmulario_contactos.html', {'form': form})
+    return render(request, 'formulario_contactos.html', {'form': form})
 
 def control_escolar(request):
 	lista_alumnos_total = Alumno.objects.order_by("id")
@@ -77,3 +78,13 @@ def contabilidad(request):
 def promotoria(request):
 	lista_prospectos_total = Aspirante.objects.order_by("id")
 	return render_to_response('siad/formulario_buscar.html', {'lista_prospectos_total':lista_prospectos_total})
+
+def nuevo_prospecto(request):
+	if request.method == 'Post':
+		form = NuevoProspecto(request.Post) 
+		if form.is_valid():
+			form.save()
+		return redirect('promotoria')
+	else:
+		form = NuevoProspecto()
+	return render(request, 'siad/nuevo_prospecto.html', {'form': form})

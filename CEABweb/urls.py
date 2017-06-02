@@ -18,4 +18,5 @@ urlpatterns = [
     url(r'^control_escolar/$', views.control_escolar, name='control_escolar'),
     url(r'^contabilidad/$', views.contabilidad, name='contabilidad'),
     url(r'^promotoria/$', views.promotoria, name='promotoria'),
+    url(r'^nuevo_prospecto/$', views.nuevo_prospecto, name='nuevo_prospecto'),
 ]

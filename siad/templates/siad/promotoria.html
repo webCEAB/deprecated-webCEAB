@@ -5,7 +5,7 @@
 	        <li class="list-group-item"><a href="/promotoria">Consulta de prospectos</a>
 	        	<span class="badge">{{ lista_prospectos_total|length }}</span>
 	        </li>
-	        <li class="list-group-item">Alta de prospectos</li>
+	        <li class="list-group-item"><a href="/nuevo_prospecto"> Alta de prospectos</a></li>
 	        <li class="list-group-item">Estadística por medio de información</li>
 	    </ul>
 	</aside>
@@ -19,6 +19,10 @@
 
 		{% block resultado %}
     	{% endblock %}
+
+    	{% block subcontent %}
+    	{% endblock %}
+
 
 
 {% endblock %}
