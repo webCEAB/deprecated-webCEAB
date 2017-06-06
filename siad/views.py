@@ -5,8 +5,8 @@ from django.template import Context
 import datetime
 from django.shortcuts import render
 from django.core.mail import send_mail
-
 from siad.models import Aspirante
+from siad.models import Alumno
 # Create your views here.
 def index(request):
 	return render(request, 'siad/index.html', {})
@@ -209,3 +209,13 @@ def comercial(request,consumo):
 	return render(request,"residencial.html",context)
 def instrucciones(request):
 	return HttpResponse("En la barra de direcciones debes de agregar residencial o comercial seguido de la diagonal / y despues el consumo, por ejemplo /residencial/510 te arroja la cotizacion para residencial con un consumo de 510 kwh")
+
+def docIncompleta(request):
+	
+	datos = Alumno.objects.filter(documentacionCompleta=True)
+	
+	
+	context = {
+				"title":"Alumnos con documentacion incompleta",
+			    "datos":datos}
+	return render(request,"residencial.html",context)
