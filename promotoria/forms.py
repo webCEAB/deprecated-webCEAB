@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ModelForm, Textarea
-from .models import Aspirante
+from .models import Aspirantes
 
 class FormularioContactos(forms.Form): 
 	asunto = forms.CharField()
@@ -10,7 +10,7 @@ class FormularioContactos(forms.Form):
 class NuevoProspecto(ModelForm): 
 
 	class Meta:
-		model = Aspirante
+		model = Aspirantes
 
 		fields = '__all__'
 		labels = {

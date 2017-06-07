@@ -1,14 +1,9 @@
 
-from django.shortcuts import render, get_object_or_404 # is used to looks for the object that is related the call
-=======
-from django.shortcuts import render, render_to_response
-
+from django.shortcuts import render, get_object_or_404, render_to_response, redirect # is used to looks for the object that is related the call
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 import datetime
-
-from django.shortcuts import render, redirect
 from django.core.mail import send_mail
 from .models import Aspirante, Alumno
 from .forms import FormularioContactos, NuevoProspecto
