@@ -2,7 +2,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from siad.views import atributos_meta
 from siad import views
-from promotoria.views import promotorianva
+from promotoria.views import promotorianva, formulario_buscar, nuevo_prospecto
 urlpatterns = [
     # Examples:
     # url(r'^$', 'CEABweb.views.home', name='home'),
@@ -11,7 +11,7 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'', include('siad.urls')),
     url(r'^meta/',atributos_meta),
-	url(r'^formulario_buscar/$', views.formulario_buscar, name='formulario_buscar'),
+	url(r'^formulario_buscar/$', formulario_buscar, name='formulario_buscar'),
     url(r'^formulario_buscar_alumno/$', views.formulario_buscar_alumno, name='formulario_buscar_alumno'),
 	url(r'^buscar/$', views.buscar),
     url(r'^buscar_alumno/$', views.buscar_alumno),
@@ -19,5 +19,5 @@ urlpatterns = [
     url(r'^control_escolar/$', views.control_escolar, name='control_escolar'),
     url(r'^contabilidad/$', views.contabilidad, name='contabilidad'),
     url(r'^promotoria/$', promotorianva, name='promotorianva'),
-    url(r'^nuevo_prospecto/$', views.nuevo_prospecto, name='nuevo_prospecto'),
+    url(r'^nuevo_prospecto/$', nuevo_prospecto, name='nuevo_prospecto'),
 ]

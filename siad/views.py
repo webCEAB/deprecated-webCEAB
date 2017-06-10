@@ -6,7 +6,7 @@ from django.template import Context
 import datetime
 from django.core.mail import send_mail
 from .models import Aspirante, Alumno
-from .forms import FormularioContactos, NuevoProspecto
+from .forms import FormularioContactos
 import csv
 
 
@@ -23,8 +23,7 @@ def atributos_meta(request):
 	return HttpResponse('<table>%s</table>' % '\n'.join(html)) 
 
 
-def formulario_buscar(request):
-	return render(request, 'siad/formulario_buscar.html')
+
 
 def formulario_buscar_alumno(request):
 	return render(request, 'siad/formulario_buscar_alumno.html')
@@ -77,17 +76,5 @@ def control_escolar(request):
 def contabilidad(request):
     return render(request,'siad/contabilidad.html')
 
-def promotoria(request):
-	lista_prospectos_total = Aspirante.objects.order_by("id")
-	return render_to_response('siad/formulario_buscar.html', {'lista_prospectos_total':lista_prospectos_total})
 
-def nuevo_prospecto(request):
-	if request.method == 'Post':
-		form = NuevoProspecto(request.Post) 
-		if form.is_valid():
-			form.save()
-		return redirect('promotoria')
-	else:
-		form = NuevoProspecto()
-	return render(request, 'siad/nuevo_prospecto.html', {'form': form})
 

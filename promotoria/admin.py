@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Aspirantes
+from .models import Aspirantes, Estudiante
 
 class AspirantesAdmin(admin.ModelAdmin):
 #	list_filter = ('plantelRegistro')
@@ -7,6 +7,6 @@ class AspirantesAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Aspirantes)
-
+admin.site.register(Estudiante)
 
 # Register your models here.
