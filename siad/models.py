@@ -15,6 +15,7 @@ class Plantel(models.Model):
 	class Meta: 
 		#ordering = ["nombre"] 
 		verbose_name_plural = "Planteles" 
+
 class Empleado(models.Model):
 	nombre = models.CharField(max_length=30)
 	plantel = models.ForeignKey(Plantel)
@@ -29,6 +30,7 @@ class Empleado(models.Model):
 	class Meta: 
 		#ordering = ["nombre"] 
 		verbose_name_plural = "Empleados" 
+
 class Servicio(models.Model):
 	nombre = models.CharField(max_length = 50)
 	costo = models.DecimalField(max_digits= 7,decimal_places=2)
@@ -37,6 +39,7 @@ class Servicio(models.Model):
 	class Meta: 
 		#ordering = ["nombre"] 
 		verbose_name_plural = "Servicios" 
+
 class Curso(models.Model):
 	opcionesServicio = (
 			('Colbach','Colbach'),
@@ -65,6 +68,7 @@ class Curso(models.Model):
 	clasificacion =  models.CharField(max_length = 10,choices = opcionesClasificacion,default = 'Global')
 	def __str__(self):
 		return self.servicio	
+
 class Aspirante(models.Model):
 	plantel = models.ForeignKey(Plantel)
 	nombre = models.CharField(max_length=30)
@@ -92,8 +96,13 @@ class Aspirante(models.Model):
 	)
 	medioContacto = models.CharField(max_length = 20,choices = opcionesMedio,default = 'Recomendacion')
 	servicioInteres = models.ForeignKey(Curso)
+
+	class Meta:
+		ordering=["apellidoPaterno"]
+
 	def __str__(self):
 		return "%s %s %s" % (self.nombre,self.apellidoPaterno,self.apellidoMaterno)
+
 class ContactoEmpresarial(models.Model):
 	nombre = models.CharField(max_length=100)
 	puesto = models.CharField(max_length=50)
@@ -104,6 +113,7 @@ class ContactoEmpresarial(models.Model):
 	class Meta: 
 		#ordering = ["nombre"] 
 		verbose_name_plural = "Contactos empresariales" 
+
 class Empresa(models.Model):
 	nombre = models.CharField(max_length=100)
 	rfc = models.CharField(max_length = 20)
@@ -178,6 +188,7 @@ class Materia(models.Model):
 	clasificacion = models.CharField(max_length = 15,choices = opcionesClasificacion,default = 'Regular')
 	def __str__(self):
 		return "%s %s" % (self.nombre , self.clasificacion)
+
 class Proovedor(models.Model):
 	nombre = models.CharField(max_length=100)
 	rfc = models.CharField(max_length = 20)
@@ -192,6 +203,7 @@ class Proovedor(models.Model):
 	class Meta: 
 		#ordering = ["nombre"] 
 		verbose_name_plural = "Proveedores" 
+
 class Egreso(models.Model):
 	opcionesConcepto = (
 			('Nomina','Nomina'),
@@ -209,9 +221,3 @@ class Egreso(models.Model):
 	montoCubierto = models.DecimalField(max_digits = 7, decimal_places = 2)
 	def __str__(self):
 		return self.concepto
-
-	
-	
-	
-	
-	
