@@ -2,7 +2,6 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from siad.views import atributos_meta
 from siad import views
-
 from promotoria.views import promotorianva, formulario_buscar, nuevo_prospecto
 
 urlpatterns = [

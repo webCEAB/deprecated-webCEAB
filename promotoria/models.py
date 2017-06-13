@@ -66,4 +66,3 @@ class Estudiante(models.Model):
 	documentacionCompleta = models.BooleanField(default=False)
 	def __str__(self):
 		return self.curp ######################################################3
-

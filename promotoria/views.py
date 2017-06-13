@@ -32,5 +32,4 @@ def nuevo_prospecto(request):
 def formulario_buscar(request):
 	return render(request, 'siad/formulario_buscar.html')
 
-
 # Create your views here.

@@ -4,9 +4,13 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 import datetime
+
+from django.core.mail import send_mail
 from .models import Aspirante, Alumno
 from .forms import FormularioContactos
 import csv
+
+
 
 # Create your views here.
 def index(request):
@@ -65,7 +69,10 @@ def contactos(request):
             return HttpResponseRedirect('/contactos/gracias/') 
     else: 
         form = FormularioContactos() 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/guardar
     return render(request, 'formulario_contactos.html', {'form': form})
 
 def control_escolar(request):
@@ -75,3 +82,8 @@ def control_escolar(request):
 def contabilidad(request):
     return render(request,'siad/contabilidad.html')
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> origin/guardar
