@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'siad',
     'promotoria',
     'controlescolar',
+    'contabilidad',
 )
 
 MIDDLEWARE_CLASSES = (

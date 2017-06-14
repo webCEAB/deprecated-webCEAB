@@ -1,11 +1,7 @@
 from django.contrib import admin
-from .models import Estudiante
-
-class AspirantesAdmin(admin.ModelAdmin):
-#	list_filter = ('plantelRegistro')
-	raw_id_fields = ('Estudiante',)
-
+from .models import Estudiante, Materia, Servicio, Curso
 
 admin.site.register(Estudiante)
-
-# Register your models here.
+admin.site.register(Materia)
+admin.site.register(Servicio)
+admin.site.register(Curso)

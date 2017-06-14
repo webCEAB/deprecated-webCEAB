@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.utils import timezone
-from siad.models import Plantel, Empleado, Curso, Empresa
+from siad.models import Plantel, Empleado, Empresa
 
 class Aspirantes(models.Model):
 	plantel = models.ForeignKey(Plantel)
