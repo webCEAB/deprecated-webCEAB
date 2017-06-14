@@ -9,7 +9,10 @@ from .forms import NuevoAlumno
 
 def control_escolares(request):
 	lista_alumnos_total = Estudiante.objects.order_by("id")
-	return render_to_response('siad/formulario_buscar_alumno.html', {'lista_alumnos_total':lista_alumnos_total})
+	return render_to_response('controlescolar/formulario_buscar_alumno.html', {'lista_alumnos_total':lista_alumnos_total})
+
+def formulario_buscar_alumno(request):
+	return render(request, 'controlescolar/formulario_buscar_alumno.html')
 
 def buscar_alumnos(request): 
 	error = False 
@@ -19,9 +22,9 @@ def buscar_alumnos(request):
 			error = True 
 		else: 
 			alumnos = Estudiante.objects.filter(id__icontains=s) 
-			return render(request, 'siad/resultados_alumno.html', {'alumnos': alumnos, 'query': s}) 
+			return render(request, 'controlescolar/resultados_alumno.html', {'alumnos': alumnos, 'query': s}) 
  
-	return render(request, 'siad/formulario_buscar_alumno.html', {'error': error}) 
+	return render(request, 'controlescolar/formulario_buscar_alumno.html', {'error': error}) 
 
 def nuevo_alumno(request):
 	if request.method == 'POST':
@@ -31,4 +34,4 @@ def nuevo_alumno(request):
 		return redirect('control_escolares')
 	else:
 		form = NuevoAlumno()
-	return render(request, 'siad/nuevo_alumno.html', {'form': form})
+	return render(request, 'controlescolar/nuevo_alumno.html', {'form': form})

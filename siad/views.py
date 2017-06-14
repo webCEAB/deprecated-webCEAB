@@ -5,7 +5,6 @@ from django.template.loader import get_template
 from django.template import Context
 import datetime
 from django.core.mail import send_mail
-from .models import Aspirante, Alumno
 from .forms import FormularioContactos
 import csv
 
@@ -22,37 +21,6 @@ def atributos_meta(request):
 		html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v)) 
 	return HttpResponse('<table>%s</table>' % '\n'.join(html)) 
 
-
-
-
-def formulario_buscar_alumno(request):
-	return render(request, 'siad/formulario_buscar_alumno.html')
-
-def buscar(request): 
-	error = False 
-	if 'q' in request.GET: 
-		q = request.GET['q'] 
-		if not q: 
-			error = True 
-		else: 
-			libros = Aspirante.objects.filter(nombre__icontains=q) 
-			return render(request, 'siad/resultados.html', {'aspirantes': libros, 'query': q}) 
- 
-	return render(request, 'siad/formulario_buscar.html', {'error': error}) 
-
-def buscar_alumno(request): 
-	error = False 
-	if 's' in request.GET: 
-		s = request.GET['s'] 
-		if not s: 
-			error = True 
-		else: 
-			alumnos = Alumno.objects.filter(id__icontains=s) 
-			return render(request, 'siad/resultados_alumno.html', {'alumnos': alumnos, 'query': s}) 
- 
-	return render(request, 'siad/formulario_buscar_alumno.html', {'error': error}) 
-
-
 def contactos(request): 
     if request.method == 'POST': 
         form = FormularioContactos(request.POST) 
@@ -67,14 +35,4 @@ def contactos(request):
             return HttpResponseRedirect('/contactos/gracias/') 
     else: 
         form = FormularioContactos() 
-    return render(request, 'formulario_contactos.html', {'form': form})
-
-def control_escolar(request):
-	lista_alumnos_total = Alumno.objects.order_by("id")
-	return render_to_response('siad/formulario_buscar_alumno.html', {'lista_alumnos_total':lista_alumnos_total})
-
-def contabilidad(request):
-    return render(request,'siad/contabilidad.html')
-
-
-
+    return render(request, 'siad/formulario_contactos.html', {'form': form})

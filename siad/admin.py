@@ -1,15 +1,9 @@
 from django.contrib import admin
-from .models import Alumno, Plantel, Empleado, Servicio, Aspirante, ContactoEmpresarial, Empresa, Pago, Curso, Materia, Proovedor, Egreso
+from .models import Plantel, Empleado, Servicio, ContactoEmpresarial, Empresa, Pago, Curso, Materia, Proovedor, Egreso
 
-class AlumnoAdmin(admin.ModelAdmin):
-#	list_filter = ('plantelRegistro')
-	raw_id_fields = ('Aspirante',)
-
-admin.site.register(Alumno, AlumnoAdmin)
 admin.site.register(Plantel)
 admin.site.register(Empleado)
 admin.site.register(Servicio)
-admin.site.register(Aspirante)
 admin.site.register(ContactoEmpresarial)
 admin.site.register(Empresa)
 admin.site.register(Pago)

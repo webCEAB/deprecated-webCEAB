@@ -14,7 +14,7 @@ def promotorianva(request):
 		return redirect('index')
 	else:
 		lista_prospectos_total = Aspirantes.objects.order_by("id")
-		return render_to_response('siad/formulario_buscar.html', {'lista_prospectos_total':lista_prospectos_total})
+		return render_to_response('promotoria/formulario_buscar.html', {'lista_prospectos_total':lista_prospectos_total})
 
 def nuevo_prospecto(request):
 	if request.method == 'POST':
@@ -24,10 +24,10 @@ def nuevo_prospecto(request):
 		return redirect('promotorianva')
 	else:
 		form = NuevoProspecto()
-	return render(request, 'siad/nuevo_prospecto.html', {'form': form})
+	return render(request, 'promotoria/nuevo_prospecto.html', {'form': form})
 
 def formulario_buscar(request):
-	return render(request, 'siad/formulario_buscar.html')
+	return render(request, 'promotoria/formulario_buscar.html')
 
 def buscar_aspirante(request): 
 	error = False 
@@ -37,8 +37,8 @@ def buscar_aspirante(request):
 			error = True 
 		else: 
 			libros = Aspirantes.objects.filter(nombre__icontains=q) 
-			return render(request, 'siad/resultados.html', {'aspirantes': libros, 'query': q}) 
+			return render(request, 'promotoria/resultados.html', {'aspirantes': libros, 'query': q}) 
  
-	return render(request, 'siad/formulario_buscar.html', {'error': error}) 
+	return render(request, 'promotoria/formulario_buscar.html', {'error': error}) 
 
 # Create your views here.
