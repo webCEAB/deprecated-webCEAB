@@ -30,27 +30,28 @@ class Materia(models.Model):
 	nombre = models.CharField(max_length = 50)
 	fechaInicio = models.DateField()
 	fechaFin = models.DateField()
-	horarioBaseInicio = models.TimeField()
-	horarioBaseFin = models.TimeField()
-	rolHorarioInicio = models.TimeField()
-	rolHorarioFin = models.TimeField()
-	opcionesDias = (
-			('Lunes a viernes','Lunes a viernes'),
-			('Lunes miercoles y viernes','Lunes, miercoles y viernes'),
-			('Sabado y domingo','Sabado y domingo'),
-			('sabado','Sabado'),
-			('Domingo','Domingo'),
-			('Otro','Otro'),
+	opcionesHorarios = (
+			('7:00:00','7:00:00'),
+			('8:00:00','8:00:00'),
+			('9:00:00','9:00:00'),
+			('13:00:00','13:00:00'),
+			('16:00:00','16:00:00'),
+			('19:30:00','19:30:00'),
+			('21:00:00','21:00:00'),
+			('21:15:00','21:15:00'),
 	)
-	diasClase = models.CharField(max_length = 30,choices = opcionesDias,default = 'Lunes a viernes')
-	opcionesClasificacion = (
-			('Regular','Regular'),
-			('Recursamiento','Recursamiento'),
-			('Otro','Otro'),
-	)
-	clasificacion = models.CharField(max_length = 15,choices = opcionesClasificacion,default = 'Regular')
+	horarioInicio = models.TimeField()#choices = opcionesHorarios,default = '7:00:00')
+	horarioFin = models.TimeField()#choices = opcionesHorarios,default = '9:00:00')
+	#opcionesDias = (
+	#		('Lunes a viernes','Lunes a viernes'),
+	#		('Sabado y domingo','Sabado y domingo'),
+	#		('Solo sabado','Solo sabado'),
+	#		('Solo domingo','Solo domingo'),
+	#		('Otro','Otro'),
+	#)
+	#diasClase = models.CharField(max_length = 30,choices = opcionesDias,default = 'Lunes a viernes')
 	def __str__(self):
-		return "%s %s" % (self.nombre , self.clasificacion)
+		return "%s; inicia %s termina %s, de %s a %s" % (self.nombre , self.fechaInicio, self.fechaFin, self.horarioInicio, self.horarioFin)
 
 class Servicio(models.Model):
 	nombre = models.CharField(max_length = 50)
