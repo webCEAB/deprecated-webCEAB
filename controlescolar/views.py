@@ -36,3 +36,13 @@ def nuevo_alumno(request):
 		form = NuevoAlumno()
 	return render(request, 'controlescolar/nuevo_alumno.html', {'form': form})
 
+def edit_estudiante(request, id_estudiante):
+	estudiante=Estudiante.objects.get(id=id_estudiante)
+	if request.method == 'GET':
+		form = NuevoAlumno(instance=estudiante)
+	else:
+		form = NuevoAlumno(request.POST, instance=estudiante)
+		if form.is_valid():
+			form.save()
+		return redirect('control_escolares')
+	return render(request, 'controlescolar/control_escolar.html', {'form': form})

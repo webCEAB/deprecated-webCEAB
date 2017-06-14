@@ -9,7 +9,7 @@ class Estudiante(models.Model):
 	fechaCreacionRegistro = models.DateField(default=timezone.now)
 	plantelRegistro = models.ForeignKey(Plantel, null = True)
 	Aspirante = models.ForeignKey(Aspirantes,null = True)
-	#Nombre = models.CharField(max_length=20, null=True,blank=True,default=Aspirante.nombre)
+	#Nombre = models.CharField(max_length=20, null=True,blank=True,default=Aspirantes.nombre)
 	numeroControl = models.IntegerField(null = True)
 	curp = models.CharField(max_length=20, null = True)
 	calle = models.CharField(max_length=100, null = True)

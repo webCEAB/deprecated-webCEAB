@@ -1,6 +1,4 @@
 from django.contrib import admin
-<<<<<<< HEAD
-=======
 from .models import Aspirantes
 
 class AspirantesAdmin(admin.ModelAdmin):
@@ -9,7 +7,3 @@ class AspirantesAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Aspirantes)
-
->>>>>>> guardar
-
-# Register your models here.
