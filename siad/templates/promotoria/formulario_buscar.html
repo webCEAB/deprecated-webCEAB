@@ -1,0 +1,43 @@
+{% extends 'promotoria/promotoria.html' %}
+
+{% block buscar %}
+    <h3>Actualmente tienes: {{ lista_prospectos_total|length }} prospecto{{ lista_prospectos_total|pluralize }}</h3>
+	<p style="color: red;">Para consultar un prospecto, por favor introduce un término de búsqueda.</p> 
+    <form action="/buscar/" method="get"> 
+        <input type="text" name="q"> 
+        <input type="submit" value="Buscar por nombre"> 
+    </form> <br>
+    <div class="table-responsive">
+        <table class="table table-striped">
+        	<thead>
+        		<tr>
+                    <th>N°</th>
+        			<th>Nombre</th>
+        			<th>Teléfonos</th>
+        			<th>Medio</th>
+                    <th>Plantel</th>
+        			<th>Fecha de registro</th>
+        			<th>Promotor</th>
+        			<th>Forma de contacto</th>
+        			<th>Curso que le interesa</th>
+        		</tr>	
+        	</thead>
+        	<tbody>
+    		    {% for prospecto in lista_prospectos_total %}
+    		    	<tr>
+    		    		<td>{{ prospecto.id }}</td>
+    		    		<td>{{ prospecto }}</td>
+    		    		<td>{{ prospecto.telefono }} y {{ prospecto.celular }}</td>
+                        <td>{{ prospecto.plantel }}</td>
+    		    		<td>{{ prospecto.medioContacto }}</td>
+    		    		<td>{{ prospecto.fechaCreacionRegistro }}</td>
+    		    		<td>{{ prospecto.promotor|cut:"Promotor: Promotor " }}</td>
+    		    		<td>{{ prospecto.formaContacto }}</td>
+    		    		<td>{{ prospecto.servicioInteres }}</td>
+    		    	</tr>
+
+    		    {% endfor %}
+    		</tbody>
+    	</table>
+    </div>
+{% endblock %}

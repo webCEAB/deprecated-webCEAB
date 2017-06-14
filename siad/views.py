@@ -1,12 +1,19 @@
-from django.shortcuts import render
+
+from django.shortcuts import render, get_object_or_404, render_to_response, redirect # is used to looks for the object that is related the call
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 import datetime
-from django.shortcuts import render
 from django.core.mail import send_mail
+<<<<<<< HEAD
 from siad.models import Aspirante
 from siad.models import Alumno
+=======
+from .forms import FormularioContactos
+import csv
+
+
+>>>>>>> guardar
 # Create your views here.
 def index(request):
 	return render(request, 'siad/index.html', {})
@@ -18,19 +25,7 @@ def atributos_meta(request):
 	for k, v in valor: 
 		html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v)) 
 	return HttpResponse('<table>%s</table>' % '\n'.join(html)) 
-def formulario_buscar(request):
-	return render(request, 'formulario_buscar.html')
-def buscar(request): 
-	error = False 
-	if 'q' in request.GET: 
-		q = request.GET['q'] 
-		if not q: 
-			error = True 
-		else: 
-			libros = Aspirante.objects.filter(nombre__icontains=q) 
-			return render(request, 'resultados.html', {'aspirantes': libros, 'query': q}) 
- 
-	return render(request, 'formulario_buscar.html', {'error': error}) 
+
 def contactos(request): 
     if request.method == 'POST': 
         form = FormularioContactos(request.POST) 
@@ -39,12 +34,13 @@ def contactos(request):
             send_mail( 
                 cd['asunto'], 
                 cd['mensaje'], 
-                cd.get('email', 'noreply@example.com'), 
-                    ['siteowner@example.com'], 
+                cd.get('email', 'indira.fraga@gmail.com'), 
+                    ['indira.fraga@gmail.com'], 
              ) 
             return HttpResponseRedirect('/contactos/gracias/') 
     else: 
         form = FormularioContactos() 
+<<<<<<< HEAD
     return render(request, 'formmulario_contactos.html', {'form': form}) 	
 
 
@@ -219,3 +215,6 @@ def docIncompleta(request):
 				"title":"Alumnos con documentacion incompleta",
 			    "datos":datos}
 	return render(request,"residencial.html",context)
+=======
+    return render(request, 'siad/formulario_contactos.html', {'form': form})
+>>>>>>> guardar

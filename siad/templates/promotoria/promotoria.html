@@ -1,0 +1,28 @@
+{% extends 'siad/base.html' %}
+{% block aside %}
+	<aside style="padding-top: 20px">
+		<ul class="list-group">
+	        <li class="list-group-item"><a href="/promotoria">Consulta de prospectos</a>
+	        	<span class="badge">{{ lista_prospectos_total|length }}</span>
+	        </li>
+	        <li class="list-group-item"><a href="/nuevo_prospecto"> Alta de prospectos</a></li>
+	        <li class="list-group-item"><a href="#">Estadística por medio de información</a></li>
+	    </ul>
+	</aside>
+{% endblock %}
+
+{% block content %}
+		<h2>¡Bienvenido a la sección de Promotoría!</h2>
+
+		{% block buscar %}
+		{% endblock %}
+
+		{% block resultado %}
+    	{% endblock %}
+
+    	{% block subcontent %}
+    	{% endblock %}
+
+
+
+{% endblock %}

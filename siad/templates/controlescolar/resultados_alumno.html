@@ -1,0 +1,35 @@
+{% extends 'controlescolar/control_escolar.html' %}
+
+{% block resultado %}
+
+	<p><a href="/control_escolares"> Click aquí para realizar otra búsqueda</a></p>
+	<p>Estas buscado: <strong>{{ query }}</strong></p> 
+
+	{% if alumnos %} 
+	    <p>alumnos encontrados: {{ alumnos|length }} alumno{{ alumnos|pluralize }}.</p> 
+
+	    <div class="table-responsive">
+	        <table class="table table-striped">
+	        	<thead>
+	        		<tr>
+	                    <th>N°</th>
+	                    <th>Nombre</th>
+	        		</tr>	
+	        	</thead>
+	        	<tbody>
+	    		    {% for alumno in alumnos %}
+	    		    	<tr>
+	    		    		<td>{{ alumno.id }}</td>
+	    		    		<td>{{ alumno.Aspirantes.nombre }}</td>
+	    		    	</tr>
+
+	    		    {% endfor %}
+	    		</tbody>
+	    	</table>
+   		</div>
+ 
+	{% else %} 
+	    <p>Ningún alumno coincide con el criterio de búsqueda.</p> 
+	{% endif %} 
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'promotoria/promotoria.html' %}
+
+{% block resultado %}
+
+	<p><a href="/promotoria"> Click aquí para realizar otra búsqueda</a></p>
+	<p>Estas buscado: <strong>{{ query }}</strong></p> 
+
+	{% if aspirantes %} 
+	    <p>Aspirantes encontrados: {{ aspirantes|length }} aspirante{{ aspirantes|pluralize }}.</p> 
+
+	    <div class="table-responsive">
+	        <table class="table table-striped">
+	        	<thead>
+	        		<tr>
+	                    <th>N°</th>
+	        			<th>Nombre</th>
+	        			<th>Teléfonos</th>
+	        			<th>Medio</th>
+	                    <th>Plantel</th>
+	        			<th>Fecha de registro</th>
+	        			<th>Promotor</th>
+	        			<th>Forma de contacto</th>
+	        			<th>Curso que le interesa</th>
+	        		</tr>	
+	        	</thead>
+	        	<tbody>
+	    		    {% for aspirante in aspirantes %}
+	    		    	<tr>
+	    		    		<td>{{ aspirante.id }}</td>
+	    		    		<td>{{ aspirante }}</td>
+	    		    		<td>{{ aspirante.telefono }} y {{ aspirante.celular }}</td>
+	                        <td>{{ aspirante.plantel }}</td>
+	    		    		<td>{{ aspirante.medioContacto }}</td>
+	    		    		<td>{{ aspirante.fechaCreacionRegistro }}</td>
+	    		    		<td>{{ aspirante.promotor|cut:"Promotor: Promotor " }}</td>
+	    		    		<td>{{ aspirante.formaContacto }}</td>
+	    		    		<td>{{ aspirante.servicioInteres }}</td>
+	    		    	</tr>
+
+	    		    {% endfor %}
+	    		</tbody>
+	    	</table>
+	    </div>
+ 
+	{% else %} 
+	    <p>Ningún aspirante coincide con el criterio de búsqueda.</p> 
+	{% endif %} 
+
+{% endblock %}
