@@ -2,9 +2,10 @@
 {% block aside %}
 	<aside style="padding-top: 20px">
 		<ul class="list-group">
-	        <li class="list-group-item"><a href="/control_escolar">Consulta de alumnos</a>
+	        <li class="list-group-item"><a href="/control_escolares">Consulta de alumnos</a>
 	        	<span class="badge">{{ lista_alumnos_total|length }}</span>
 	        </li>
+	        <li class="list-group-item"><a href="/nuevo_alumno">Alta de alumnos</a></li>
 	        <li class="list-group-item">Consulta de calificaciones</li>
 	        <li class="list-group-item">Consulta de adeudos</li>
 	        <li class="list-group-item">Baja de alumnos</li>
@@ -19,6 +20,9 @@
 		{% endblock %}
 
 		{% block resultado %}
+    	{% endblock %}
+
+    	{% block subcontent %}
     	{% endblock %}
 
 

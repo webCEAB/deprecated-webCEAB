@@ -21,15 +21,24 @@ def nuevo_prospecto(request):
 		form = NuevoProspecto(request.POST) 
 		if form.is_valid():
 			form.save()
-			print ("Se guardo correctamente")
-		print ("No es valido el formulario")
 		return redirect('promotorianva')
 	else:
 		form = NuevoProspecto()
-		print ("no se guardaron los datos")
 	return render(request, 'siad/nuevo_prospecto.html', {'form': form})
 
 def formulario_buscar(request):
 	return render(request, 'siad/formulario_buscar.html')
+
+def buscar_aspirante(request): 
+	error = False 
+	if 'q' in request.GET: 
+		q = request.GET['q'] 
+		if not q: 
+			error = True 
+		else: 
+			libros = Aspirantes.objects.filter(nombre__icontains=q) 
+			return render(request, 'siad/resultados.html', {'aspirantes': libros, 'query': q}) 
+ 
+	return render(request, 'siad/formulario_buscar.html', {'error': error}) 
 
 # Create your views here.
