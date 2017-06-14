@@ -1,15 +1,25 @@
 {% extends 'siad/base.html' %}
-
 {% block aside %}
-	<aside>
-		<ul>
-	        <li>Ingresos</li>
-	        <li>Egresos</li>
-	        <li>Corte de caja</li>
+	<aside style="padding-top: 20px">
+		<ul class="list-group">
+	        <li class="list-group-item"><a href="/nuevo_egreso">Registro de Egresos</a></li>
+	        <li class="list-group-item"><a href="#">Corte de caja</a></li>
 	    </ul>
 	</aside>
 {% endblock %}
 
 {% block content %}
-	<h2>¡Bienvenido a la sección de Contabilidad!</h2>
-{% endblock content %}
+		<h2>¡Bienvenido a la sección de Contabilidad!</h2>
+
+		{% block buscar %}
+		{% endblock %}
+
+		{% block resultado %}
+    	{% endblock %}
+
+    	{% block subcontent %}
+    	{% endblock %}
+
+
+
+{% endblock %}
