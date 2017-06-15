@@ -39,11 +39,9 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'siad',
     'promotoria',
-<<<<<<< HEAD
-=======
     'controlescolar',
     'contabilidad',
->>>>>>> 89b6ba607cb306d585a2d3e5d39498dc16807940
+
 )
 
 MIDDLEWARE_CLASSES = (
