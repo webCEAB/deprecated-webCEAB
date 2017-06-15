@@ -1,8 +1,12 @@
 from __future__ import unicode_literals
+<<<<<<< HEAD
 
+=======
+>>>>>>> 89b6ba607cb306d585a2d3e5d39498dc16807940
 from django.db import models
 from django.utils import timezone
-from siad.models import Plantel, Empleado, Curso, Empresa
+from siad.models import Plantel, Empleado, Empresa
+
 class Aspirantes(models.Model):
 	plantel = models.ForeignKey(Plantel)
 	nombre = models.CharField(max_length=30)
@@ -46,6 +50,7 @@ class Aspirantes(models.Model):
 	def __str__(self):
 		return "%s %s %s" % (self.nombre,self.apellidoPaterno,self.apellidoMaterno)
 
+<<<<<<< HEAD
 class Estudiante(models.Model):
 	fechaCreacionRegistro = models.DateField(default=timezone.now)
 	plantelRegistro = models.ForeignKey(Plantel, null = True)
@@ -66,3 +71,5 @@ class Estudiante(models.Model):
 	documentacionCompleta = models.BooleanField(default=False)
 	def __str__(self):
 		return self.curp ######################################################3
+=======
+>>>>>>> 89b6ba607cb306d585a2d3e5d39498dc16807940

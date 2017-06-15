@@ -6,12 +6,18 @@ from django.template import Context
 import datetime
 
 from django.core.mail import send_mail
+<<<<<<< HEAD
 from .models import Aspirante, Alumno
 from .forms import FormularioContactos
 import csv
 
 
 
+=======
+from .forms import FormularioContactos
+import csv
+
+>>>>>>> 89b6ba607cb306d585a2d3e5d39498dc16807940
 # Create your views here.
 def index(request):
 	return render(request, 'siad/index.html', {})
@@ -23,37 +29,6 @@ def atributos_meta(request):
 	for k, v in valor: 
 		html.append('<tr><td>%s</td><td>%s</td></tr>' % (k, v)) 
 	return HttpResponse('<table>%s</table>' % '\n'.join(html)) 
-
-
-
-
-def formulario_buscar_alumno(request):
-	return render(request, 'siad/formulario_buscar_alumno.html')
-
-def buscar(request): 
-	error = False 
-	if 'q' in request.GET: 
-		q = request.GET['q'] 
-		if not q: 
-			error = True 
-		else: 
-			libros = Aspirante.objects.filter(nombre__icontains=q) 
-			return render(request, 'siad/resultados.html', {'aspirantes': libros, 'query': q}) 
- 
-	return render(request, 'siad/formulario_buscar.html', {'error': error}) 
-
-def buscar_alumno(request): 
-	error = False 
-	if 's' in request.GET: 
-		s = request.GET['s'] 
-		if not s: 
-			error = True 
-		else: 
-			alumnos = Alumno.objects.filter(id__icontains=s) 
-			return render(request, 'siad/resultados_alumno.html', {'alumnos': alumnos, 'query': s}) 
- 
-	return render(request, 'siad/formulario_buscar_alumno.html', {'error': error}) 
-
 
 def contactos(request): 
     if request.method == 'POST': 
@@ -69,6 +44,7 @@ def contactos(request):
             return HttpResponseRedirect('/contactos/gracias/') 
     else: 
         form = FormularioContactos() 
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 =======
@@ -87,3 +63,6 @@ def contabilidad(request):
 
 
 >>>>>>> origin/guardar
+=======
+    return render(request, 'siad/formulario_contactos.html', {'form': form})
+>>>>>>> 89b6ba607cb306d585a2d3e5d39498dc16807940

@@ -1,8 +1,8 @@
-{% extends 'siad/control_escolar.html' %}
+{% extends 'controlescolar/control_escolar.html' %}
 
 {% block resultado %}
 
-	<p><a href="/control_escolar"> Click aquí para realizar otra búsqueda</a></p>
+	<p><a href="/control_escolares"> Click aquí para realizar otra búsqueda</a></p>
 	<p>Estas buscado: <strong>{{ query }}</strong></p> 
 
 	{% if alumnos %} 
@@ -20,7 +20,7 @@
 	    		    {% for alumno in alumnos %}
 	    		    	<tr>
 	    		    		<td>{{ alumno.id }}</td>
-	    		    		<td>{{ alumno.Aspirante.nombre }}</td>
+	    		    		<td>{{ alumno.Aspirantes.nombre }}</td>
 	    		    	</tr>
 
 	    		    {% endfor %}

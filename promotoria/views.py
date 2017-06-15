@@ -14,22 +14,35 @@ def promotorianva(request):
 		return redirect('index')
 	else:
 		lista_prospectos_total = Aspirantes.objects.order_by("id")
-		return render_to_response('siad/formulario_buscar.html', {'lista_prospectos_total':lista_prospectos_total})
+		return render_to_response('promotoria/formulario_buscar.html', {'lista_prospectos_total':lista_prospectos_total})
 
 def nuevo_prospecto(request):
 	if request.method == 'POST':
 		form = NuevoProspecto(request.POST) 
 		if form.is_valid():
 			form.save()
-			print ("Se guardo correctamente")
-		print ("No es valido el formulario")
 		return redirect('promotorianva')
 	else:
 		form = NuevoProspecto()
-		print ("no se guardaron los datos")
-	return render(request, 'siad/nuevo_prospecto.html', {'form': form})
+	return render(request, 'promotoria/nuevo_prospecto.html', {'form': form})
 
 def formulario_buscar(request):
+<<<<<<< HEAD
 	return render(request, 'siad/formulario_buscar.html')
+=======
+	return render(request, 'promotoria/formulario_buscar.html')
+
+def buscar_aspirante(request): 
+	error = False 
+	if 'q' in request.GET: 
+		q = request.GET['q'] 
+		if not q: 
+			error = True 
+		else: 
+			libros = Aspirantes.objects.filter(nombre__icontains=q) 
+			return render(request, 'promotoria/resultados.html', {'aspirantes': libros, 'query': q}) 
+ 
+	return render(request, 'promotoria/formulario_buscar.html', {'error': error}) 
+>>>>>>> 89b6ba607cb306d585a2d3e5d39498dc16807940
 
 # Create your views here.
