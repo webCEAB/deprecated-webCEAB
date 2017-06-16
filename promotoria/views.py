@@ -27,9 +27,6 @@ def nuevo_prospecto(request):
 	return render(request, 'promotoria/nuevo_prospecto.html', {'form': form})
 
 def formulario_buscar(request):
-<<<<<<< HEAD
-	return render(request, 'siad/formulario_buscar.html')
-=======
 	return render(request, 'promotoria/formulario_buscar.html')
 
 def buscar_aspirante(request): 
@@ -43,6 +40,6 @@ def buscar_aspirante(request):
 			return render(request, 'promotoria/resultados.html', {'aspirantes': libros, 'query': q}) 
  
 	return render(request, 'promotoria/formulario_buscar.html', {'error': error}) 
->>>>>>> 89b6ba607cb306d585a2d3e5d39498dc16807940
+
 
 # Create your views here.

@@ -6,7 +6,6 @@ import datetime
 from django.core.mail import send_mail
 from .models import Egreso
 from .forms import NuevoEgreso
-from django.contrib.auth.decorators import permission_required
 
 # Create your views here.
 def contabilidad(request):

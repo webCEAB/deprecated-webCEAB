@@ -4,20 +4,10 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 import datetime
-
 from django.core.mail import send_mail
-<<<<<<< HEAD
-from .models import Aspirante, Alumno
 from .forms import FormularioContactos
 import csv
 
-
-
-=======
-from .forms import FormularioContactos
-import csv
-
->>>>>>> 89b6ba607cb306d585a2d3e5d39498dc16807940
 # Create your views here.
 def index(request):
 	return render(request, 'siad/index.html', {})
@@ -44,11 +34,6 @@ def contactos(request):
             return HttpResponseRedirect('/contactos/gracias/') 
     else: 
         form = FormularioContactos() 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/guardar
     return render(request, 'formulario_contactos.html', {'form': form})
 
 def control_escolar(request):
@@ -57,12 +42,3 @@ def control_escolar(request):
 
 def contabilidad(request):
     return render(request,'siad/contabilidad.html')
-
-<<<<<<< HEAD
-=======
-
-
->>>>>>> origin/guardar
-=======
-    return render(request, 'siad/formulario_contactos.html', {'form': form})
->>>>>>> 89b6ba607cb306d585a2d3e5d39498dc16807940
