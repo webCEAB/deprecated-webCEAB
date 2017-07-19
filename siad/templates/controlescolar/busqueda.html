@@ -1,0 +1,23 @@
+<!--DOCTYPE html -->
+<html>
+
+
+<body>
+<h1>Consulta is working!</h1>
+
+{% for obj in object_list %}
+
+
+<a href='{{ obj.get_absolute_url }}'>{{ obj.title }}</a><br/>
+{{ obj.Aspirante }}<br/>
+{{ obj.plantelRegistro }}<br/>
+{{ obj.curp }}<br/>
+{{ obj.edad }}<br/>
+{{ obj.adeudo }}<br/>
+
+{% endfor %}
+
+
+</body>
+
+</html>

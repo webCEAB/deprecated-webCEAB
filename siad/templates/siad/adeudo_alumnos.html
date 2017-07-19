@@ -1,0 +1,9 @@
+ {% extends 'siad/consultas.html' %}
+
+{% block subcontent %}
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Consultar</button>
+	</form>
+{% endblock %}

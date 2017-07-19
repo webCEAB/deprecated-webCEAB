@@ -2,6 +2,7 @@ from django import forms
 from django.forms import ModelForm, Textarea
 from .models import Estudiante
 
+
 class NuevoAlumno(ModelForm): 
 
 	class Meta:
@@ -14,3 +15,4 @@ class NuevoAlumno(ModelForm):
 		'aspirante': ('Aspirante'),
 		'numerocontrol': ('Numero de Control interno'),
 		}
+		readonly_fields = ['numeroControl']

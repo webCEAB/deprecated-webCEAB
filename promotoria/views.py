@@ -1,14 +1,33 @@
-from django.shortcuts import render, get_object_or_404, render_to_response, redirect # is used to looks for the object that is related the call
+from django.shortcuts import render, get_object_or_404, render_to_response, redirect, HttpResponseRedirect # is used to looks for the object that is related the call
 from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 import datetime
 from django.core.mail import send_mail
 from .models import Aspirantes
-from .forms import NuevoProspecto
+from .forms import NuevoProspecto, ConsultaAspiranteForm
 from django.contrib.auth.decorators import permission_required
 
-@permission_required('polls.can_vote')
+
+def detalleAspirante(request,id = None):
+	instance = get_object_or_404(Aspirantes, id=id)
+	context = {
+		"instance": instance,
+	}
+	return render(request, "promotoria/detalleAspirante.html", context)
+def editaProspecto(request,id = None):
+	instance = get_object_or_404(Aspirantes, id=id)
+	form = ConsultaAspiranteForm(request.POST or None, instance=instance)
+	if form.is_valid():
+		instance = form.save(commit=False)
+		instance.save()
+		print instance.get_absolute_url()
+		return HttpResponseRedirect(instance.get_absolute_url())
+
+	context = {
+		"form":form,
+	}
+	return render(request, "promotoria/editaProspecto.html", context)
 def promotorianva(request):
 	if not request.user.is_authenticated:
 		return redirect('index')

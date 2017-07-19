@@ -25,3 +25,13 @@ class NuevoProspecto(ModelForm):
 		'medioContacto': ('Medio de Contacto'),
 		'servicioInteres': ('Servicio que le interesa'),
 		}
+
+
+class ConsultaAspiranteForm(ModelForm): 
+	name = forms.CharField()
+	url = forms.URLField()
+	class Meta:
+		model = Aspirantes
+
+		fields = '__all__'
+		
