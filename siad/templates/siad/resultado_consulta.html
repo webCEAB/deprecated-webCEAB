@@ -1,0 +1,23 @@
+ {% extends 'siad/consultas.html' %}
+
+{% block subcontent %}
+	<table class = "table table-striped">
+		<thead class="thead-inverse">
+			{% for item in encabezados %}
+				
+					<td> {{item}} </td>
+				
+			{% endfor %}
+		</thead>
+		<tbody>
+			{% for item in lista %}
+				<tr>
+				{% for subitem in item%}
+					<td> {{subitem}} </td>
+				{%endfor%}
+				
+		  		</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}

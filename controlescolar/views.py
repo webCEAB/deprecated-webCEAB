@@ -7,9 +7,18 @@ from django.core.mail import send_mail
 from .models import Estudiante
 from .forms import NuevoAlumno
 
+def consulta_adeudos(request,min = None):
+	queryset = Estudiante.objects.filter(adeudo__gte = min)
+	context = {
+		"object_list": queryset, 
+	}
+	print queryset
+	return render(request, "controlescolar/busqueda.html", context)
+
 def control_escolares(request):
 	lista_alumnos_total = Estudiante.objects.order_by("id")
 	return render_to_response('controlescolar/formulario_buscar_alumno.html', {'lista_alumnos_total':lista_alumnos_total})
+
 
 def formulario_buscar_alumno(request):
 	return render(request, 'controlescolar/formulario_buscar_alumno.html')

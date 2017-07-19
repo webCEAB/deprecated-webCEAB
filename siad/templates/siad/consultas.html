@@ -1,0 +1,26 @@
+{% extends 'siad/base.html' %}
+{% block aside %}
+	<aside style="padding-top: 20px">
+		<ul class="list-group">
+	        
+	        <li class="list-group-item"><a href="/consulta_adeudo_alumnos">Adeudo alumnos</a></li>
+	        <li class="list-group-item"><a href="#">Egresos</a></li>
+	        <li class="list-group-item"><a href="#">Ingresos</a></li>
+	    </ul>
+	</aside>
+{% endblock %}
+
+{% block content %}
+		<h2>Consultas</h2>
+
+		{% block buscar %}
+		{% endblock %}
+
+		{% block resultado %}
+    	{% endblock %}
+
+    	{% block subcontent %}
+    	{% endblock %}
+
+
+{% endblock %}
