@@ -41,4 +41,8 @@ def control_escolar(request):
 	return render_to_response('siad/formulario_buscar_alumno.html', {'lista_alumnos_total':lista_alumnos_total})
 
 def contabilidad(request):
+
     return render(request,'siad/contabilidad.html')
+
+def agregar_campo(request):
+    return render(request,'siad/agrega_campo.html')

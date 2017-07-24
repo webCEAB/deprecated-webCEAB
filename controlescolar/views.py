@@ -5,7 +5,7 @@ from django.template import Context
 import datetime
 from django.core.mail import send_mail
 from .models import Estudiante
-from .forms import NuevoAlumno
+from .forms import NuevoAlumno,NuevoAlumno2
 
 def consulta_adeudos(request,min = None):
 	queryset = Estudiante.objects.filter(adeudo__gte = min)
@@ -37,12 +37,12 @@ def buscar_alumnos(request):
 
 def nuevo_alumno(request):
 	if request.method == 'POST':
-		form = NuevoAlumno(request.POST) 
+		form = NuevoAlumno2(request.POST) 
 		if form.is_valid():
 			form.save()
 		return redirect('control_escolares')
 	else:
-		form = NuevoAlumno()
+		form = NuevoAlumno2()
 	return render(request, 'controlescolar/nuevo_alumno.html', {'form': form})
 
 def edit_estudiante(request, id_estudiante):

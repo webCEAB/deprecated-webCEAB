@@ -1,7 +1,10 @@
 <!DOCTYPE HTML PUBLIC "­//W3C//DTD HTML 4.01//EN">
+
 {% load staticfiles %}
 <html lang="es"> 
 	<head>
+
+
 		<title>Sistema CEAB</title>
 		<!-- Latest compiled and minified CSS -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -78,6 +81,16 @@
 	    <!-- Latest compiled and minified JavaScript -->
 		<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="/static/admin/js/admin/RelatedObjectLookups.js"></script>
+
+
+		<a
+href="/add/{{ field }}"
+class="add-another"
+id="add_id_{{ field }}"
+onclick="return showAddAnotherPopup(this);">
+<img src="/media/img/admin/icon_addlink.gif" width="10" height="10" alt="Add Another"/>
+</a>
 
 	</body> 
 </html>

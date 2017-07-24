@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-from siad.views import atributos_meta, contactos
+from siad.views import atributos_meta, contactos,agregar_campo
 from promotoria.views import promotorianva, formulario_buscar, nuevo_prospecto, buscar_aspirante,detalleAspirante,editaProspecto
 from controlescolar.views import buscar_alumnos, control_escolares, nuevo_alumno, formulario_buscar_alumno, consulta_adeudos
 from contabilidad.views import contabilidad, nuevo_egreso, consulta_adeudo_alumnos
@@ -28,5 +28,6 @@ urlpatterns = [
     url(r'^(?P<id>\d+)/$', detalleAspirante, name='detalleAspirante'),
     url(r'^consulta_adeudos/(?P<min>\d+)/$', consulta_adeudos, name='colsulta_adeudos'),
     url(r'^consulta_adeudo_alumnos/$', consulta_adeudo_alumnos, name='adeudo_alumnos'),
+    url(r'^add/$', agregar_campo, name='agregar_campo'),
 
 ]
