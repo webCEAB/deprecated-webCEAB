@@ -16,7 +16,7 @@ class Proveedor(models.Model):
 		#ordering = ["nombre"] 
 		verbose_name_plural = "Proveedores" 
 
-class PagoAlumnos(models.Model):
+class PagosAlumno(models.Model):
 	#alumno = models.ForeignKey(Alumno)
 	#opcionesEsquema = (
 	#		('Semanal','Semanal'),
@@ -32,7 +32,7 @@ class PagoAlumnos(models.Model):
 	def __str__(self):
 		return self.descripcion
 class Ingreso(models.Model):
-
+	numero_registro = models.IntegerField()
 class Egreso(models.Model):
 	opcionesConcepto = (
 			('Nomina','Nomina'),
